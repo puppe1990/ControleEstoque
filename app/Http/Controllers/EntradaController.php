@@ -57,13 +57,24 @@ class EntradaController extends Controller
                ->action('EntradaController@listarEntrada');
     }
 
-    public function mostra($id_produto){
+    public function mostra($id_entrada){
 
-        $produto = Produto::find($id_produto);
+        $entrada = Entrada::find($id_entrada);
+        $produtos = Produto::all();
 
-        if(empty($produto)) {
-            return "Essa produto não existe";
+        if(empty($entrada)) {
+            return "Essa entrada não existe";
         }
-        return view('produto.edita')->with(['categorias' => $categorias,'p' => $produto]);
+        return view('entrada.edita')->with(['produtos' => $produtos, 'e' => $entrada]);
+    }
+
+    public function edita($id_entrada){
+
+        $entrada = Entrada::find($id_entrada);
+        $params = Request::all();
+        $entrada->update($params);
+
+        return redirect()
+               ->action('EntradaController@listarEntrada');
     }
 }

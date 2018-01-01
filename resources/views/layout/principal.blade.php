@@ -20,7 +20,7 @@
       <li class="active"><a href="{{action('ProdutoController@listar')}}">Listar Produtos</a></li>
       <li><a href="{{action('CategoriaController@listar')}}">Listar Categoria</a></li>
       <li><a href="{{action('EntradaController@listarEntrada')}}">Listar Entrada</a></li>
-      <li><a href="{{action('EntradaController@listarSaida')}}">Listar Saída</a></li>
+      <li><a href="{{action('SaidaController@listarSaida')}}">Listar Saída</a></li>
     </ul>
   </div>
 </nav>

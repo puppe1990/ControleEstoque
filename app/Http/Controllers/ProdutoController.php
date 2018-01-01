@@ -14,12 +14,16 @@ class ProdutoController extends Controller
 
         $produtos = Produto::all();
         $produtos = Produto
-        ::join('entradas', 'produtos.id_produto', '=', 'entradas.fk_produto')
-        ->select('produtos.id_produto','produtos.codigo_produto','produtos.descricao', 'produtos.valor',DB::raw('sum(entradas.quantidade) as quantidade'))
+        ::leftJoin('entradas', 'produtos.id_produto', '=', 'entradas.fk_produto')
+        ->leftJoin('saidas', 'produtos.id_produto', '=', 'saidas.fk_produto')
+        ->select('produtos.id_produto','produtos.codigo_produto','produtos.descricao', 'produtos.valor',DB::raw('sum(entradas.quantidade) as quantidadeEntrada'),DB::raw('sum(saidas.quantidade) as quantidadeSaida'))
         ->groupBy('produtos.descricao','produtos.codigo_produto','produtos.valor','produtos.id_produto')
         ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
         ->orderBy('produtos.id_produto','ASC')
         ->get();
+        // echo "<pre>";
+        // var_dump($produtos);exit;
+        // echo "</pre>";
     	return view('produto.listagem')->with(['produtos' => $produtos]);
     }
 

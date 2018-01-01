@@ -34,12 +34,19 @@ Route::post('/CadastrarCategoria/edita/{id_categoria}','CategoriaController@edit
 //Entrada
 Route::get('/ListarEntrada','EntradaController@listarEntrada');
 Route::get('/ListarEntrada/remove/{id_entrada}','EntradaController@remove');
-Route::get('/ListarEntrada/mostrar/{id_produto}','EntradaController@mostra');
+Route::get('/ListarEntrada/mostrar/{id_entrada}','EntradaController@mostra');
 Route::get('/LancarEntrada','EntradaController@novo');
 Route::post('/LancarEntrada/adiciona','EntradaController@adiciona');
+Route::post('/LancarEntrada/edita/{id_entrada}','EntradaController@edita');
+
 
 //Saída
-Route::get('/ListarSaida','EntradaController@listarSaida');
+Route::get('/ListarSaida','SaidaController@listarSaida');
+Route::get('/ListarSaida/remove/{id_saida}','SaidaController@remove');
+Route::get('/ListarSaida/mostrar/{id_saida}','SaidaController@mostra');
+Route::get('/LancarSaida','SaidaController@novo');
+Route::post('/LancarSaida/adiciona','SaidaController@adiciona');
+Route::post('/LancarSaida/edita/{id_saida}','SaidaController@edita');
 
 Auth::routes();
 

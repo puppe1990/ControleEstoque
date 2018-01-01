@@ -1,46 +1,30 @@
 @extends('layout.principal')
 @section('conteudo')
 
-<form class="form-horizontal" method="post" action="/NovoProduto/adiciona">
+<form class="form-horizontal" method="post" action="/LancarSaida/adiciona">
     <fieldset>
 
     <!-- Form Name -->
-    <legend>Cadastro de Produto</legend>
+    <legend>Lançamento de Saída</legend>
+
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
     <!-- Text input-->
     <div class="form-group">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-        <label class="col-md-4 control-label" for="textinput">Código do Produto</label>  
+        <label class="col-md-4 control-label" for="produto">Código/Nome do Produto</label>
         <div class="col-md-4">
-            <input id="textinput" name="codigo_produto" type="text" placeholder="Insira um código" class="form-control input-md" required>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="col-md-4 control-label" for="textinput">Descrição</label>  
-        <div class="col-md-4">
-            <input id="textinput" name="descricao" type="text" placeholder="Insira uma descrição" class="form-control input-md" required>
-        </div>
-    </div>
-
-    <!-- Text input-->
-    <div class="form-group">
-      <label class="col-md-4 control-label" for="valor">Valor</label>  
-        <div class="col-md-4">
-            <input id="valor" name="valor" type="text" placeholder="Insira um valor" class="form-control input-md" required>
-        </div>
-    </div>
-
-    <!-- Select Basic -->
-    <div class="form-group">
-        <label class="col-md-4 control-label" for="categoria">Categoria</label>
-        <div class="col-md-4">
-            <select id="categoria" name="fk_categoria" class="form-control">
-                @foreach($categorias as $c)
-                    <option value="{{ $c->id_categoria}}">{{ $c->nome}}</option>
+            <select id="categoria" name="fk_produto" class="form-control">
+                @foreach($produtos as $p)
+                    <option value="{{ $p->id_produto}}">{{ $p->descricao}}</option>
                 @endforeach
             </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="quantidade">Quantidade</label>  
+        <div class="col-md-4">
+            <input id="valor" name="quantidade" type="text" placeholder="Insira um valor" class="form-control input-md" required>
         </div>
     </div>
 

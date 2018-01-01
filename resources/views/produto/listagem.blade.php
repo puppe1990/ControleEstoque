@@ -25,9 +25,9 @@
           <td>{{ $p->codigo_produto }}</td>
           <td>{{ $p->descricao }}</td>
           <td>R$ {{ $p->valor }}</td>
-          <td>{{ $p->quantidade }}</td>
-          <td></td>
-          <td></td>
+          <td>{{ $p->quantidadeEntrada ? $p->quantidadeEntrada : 0  }}</td>
+          <td>{{ $p->quantidadeSaida ? $p->quantidadeSaida : 0 }}</td>
+          <td>{{ $p->quantidadeEntrada - $p->quantidadeSaida}}</td>
           <td><a href="/Produtos/mostrar/{{ $p->id_produto }}"><span class="glyphicon glyphicon-trash"></span></a></td>
           <td><a href="/Produtos/remove/{{ $p->id_produto }}"><span class="glyphicon glyphicon-trash"></span></a></td>
         </tr>
