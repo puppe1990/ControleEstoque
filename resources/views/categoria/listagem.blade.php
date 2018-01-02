@@ -5,7 +5,7 @@
   <ul>
       <li><a href="{{action('CategoriaController@novo')}}">Cadastrar Categoria</a></li>
   </ul>             
-  <table class="table table-bordered">
+  <table id="listagem" class="table table-bordered">
     <thead>
       <tr>
         <th>#</th>
@@ -19,7 +19,7 @@
         <tr>
           <td>{{ $c->id_categoria }}</td>
           <td>{{ $c->nome }}</td>
-          <td><a href="/ListarCategoria/mostrar/{{ $c->id_categoria }}"><span class="glyphicon glyphicon-trash"></span></a></td>
+          <td><a href="/ListarCategoria/mostrar/{{ $c->id_categoria }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
           <td><a href="/ListarCategoria/remove/{{ $c->id_categoria }}"><span class="glyphicon glyphicon-trash"></span></a></td>
         </tr>     
 

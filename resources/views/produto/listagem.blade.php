@@ -2,11 +2,13 @@
 @section('conteudo')
 <div class="container">
   <h2>Produtos</h2>
-  <ul class="nav navbar-nav">
+  
+  <ul>
     <li><a href="{{action('ProdutoController@novo')}}">Cadastrar Produto</a></li>
-  </ul>  
+  </ul>
+    
 
-  <table class="table table-bordered">
+  <table id="listagem" class="table table-bordered">
     <thead>
       <tr>
         <th>Código Produto</th>
@@ -15,6 +17,7 @@
         <th>Entrada</th>
         <th>Saída</th>
         <th>Saldo</th>
+        <th>Total</th>
         <th>Editar</th>
         <th>Excluir</th>
       </tr>
@@ -27,8 +30,9 @@
           <td>R$ {{ $p->valor }}</td>
           <td>{{ $p->quantidadeEntrada ? $p->quantidadeEntrada : 0  }}</td>
           <td>{{ $p->quantidadeSaida ? $p->quantidadeSaida : 0 }}</td>
-          <td>{{ $p->quantidadeEntrada - $p->quantidadeSaida}}</td>
-          <td><a href="/Produtos/mostrar/{{ $p->id_produto }}"><span class="glyphicon glyphicon-trash"></span></a></td>
+          <td>{{ $saldo = $p->quantidadeEntrada - $p->quantidadeSaida}}</td>
+          <td>R$ {{ $p->valor * $saldo}}</td>
+          <td><a href="/Produtos/mostrar/{{ $p->id_produto }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
           <td><a href="/Produtos/remove/{{ $p->id_produto }}"><span class="glyphicon glyphicon-trash"></span></a></td>
         </tr>
       @endforeach

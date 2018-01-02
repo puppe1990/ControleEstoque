@@ -6,7 +6,7 @@
     <li><a href="{{action('EntradaController@novo')}}">Lançar Entrada</a></li>
   </ul>  
 
-  <table class="table table-bordered">
+  <table id="listagem" class="table table-bordered">
     <thead>
       <tr>
         <th>Código Produto</th>
@@ -26,7 +26,7 @@
           <td>R$ {{ $p->valor }}</td>
           <td>{{ $p->created_at }}</td>
           <td>{{ $p->quantidade }}</td>
-          <td><a href="/ListarEntrada/mostrar/{{ $p->id_entrada }}"><span class="glyphicon glyphicon-trash"></span></a></td>
+          <td><a href="/ListarEntrada/mostrar/{{ $p->id_entrada }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
           <td><a href="/ListarEntrada/remove/{{ $p->id_entrada }}"><span class="glyphicon glyphicon-trash"></span></a></td>
         </tr>
       @endforeach

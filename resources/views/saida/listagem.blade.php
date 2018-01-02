@@ -6,7 +6,7 @@
     <li><a href="{{action('SaidaController@novo')}}">Lançar Saida</a></li>
   </ul>  
 
-  <table class="table table-bordered">
+  <table id="listagem" class="table table-bordered">
     <thead>
       <tr>
         <th>Código Produto</th>
