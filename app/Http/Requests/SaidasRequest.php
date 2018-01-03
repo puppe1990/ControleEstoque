@@ -21,10 +21,21 @@ class SaidasRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+        public function rules()
     {
         return [
-            //
+           'quantidade' => 'required|max:10',
+           'quantidade' => 'required|numeric',
+           'created_at' => 'required|date'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'quantidade.required' => 'Quantidade deve ser preenchida.',
+            'quantidade.numeric' => 'O campo quantidade deve ser númerico.',
+            'created_at.date' => 'Data Saída deve estar em formato data dd/mm/yyyy'
         ];
     }
 }

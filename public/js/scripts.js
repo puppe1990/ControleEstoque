@@ -3,12 +3,7 @@ $(document).ready(function(){
 	$('#listagem').DataTable();
 
     $( "#datepicker" ).datepicker();
+
+    $("#categoria").select2(); 
     
- //    $(".js-example-basic-multiple-limit").select2({
- //  		templateSelection: formatState
-	// });
-
-	// $( function() {
-  	// });
-
 });

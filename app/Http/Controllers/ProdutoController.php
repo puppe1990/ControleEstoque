@@ -12,7 +12,6 @@ class ProdutoController extends Controller
 {
     public function listar(){
 
-        $produtos = Produto::all();
         $produtos = Produto
         ::leftJoin('entradas', 'produtos.id_produto', '=', 'entradas.fk_produto')
         ->leftJoin('saidas', 'produtos.id_produto', '=', 'saidas.fk_produto')
@@ -21,9 +20,7 @@ class ProdutoController extends Controller
         ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
         ->orderBy('produtos.id_produto','ASC')
         ->get();
-        // echo "<pre>";
-        // var_dump($produtos);exit;
-        // echo "</pre>";
+
     	return view('produto.listagem')->with(['produtos' => $produtos]);
     }
 

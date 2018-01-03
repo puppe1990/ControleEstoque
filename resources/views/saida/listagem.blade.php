@@ -26,7 +26,7 @@
           <td>R$ {{ $p->valor }}</td>
           <td>{{ $p->created_at }}</td>
           <td>{{ $p->quantidade }}</td>
-          <td><a href="/ListarSaida/mostrar/{{ $p->id_saida }}"><span class="glyphicon glyphicon-trash"></span></a></td>
+          <td><a href="/ListarSaida/mostrar/{{ $p->id_saida }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
           <td><a href="/ListarSaida/remove/{{ $p->id_saida }}"><span class="glyphicon glyphicon-trash"></span></a></td>
         </tr>
       @endforeach

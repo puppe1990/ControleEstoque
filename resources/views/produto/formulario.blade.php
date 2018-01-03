@@ -4,8 +4,23 @@
 <form class="form-horizontal" method="post" action="/NovoProduto/adiciona">
     <fieldset>
 
+
     <!-- Form Name -->
     <legend>Cadastro de Produto</legend>
+
+    @if (count($errors) > 0)
+        <div class="form-group">
+            <div class="col-md-6 col-xs-6 col-sm-6">
+                <div class="alert alert-danger">
+                    <ul>
+                    @foreach ($errors->all() as $error) 
+                        <li>{{ $error }}</li>
+                    @endforeach 
+                    </ul>   
+                </div>
+            </div>    
+        </div>    
+    @endif  
 
     <!-- Text input-->
     <div class="form-group">
