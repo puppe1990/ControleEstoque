@@ -8,7 +8,7 @@
   </ul>
     
 
-  <table id="listagem" class="table table-bordered">
+  <table id="" class="table table-bordered">
     <thead>
       <tr>
         <th>Código Produto</th>

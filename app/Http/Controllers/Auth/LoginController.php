@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Requests\Login;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -35,5 +37,16 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function entrar(Login $request)
+    {
+        $credentials = array('email' => $request->email, 'password' => $request->password);
+
+        if (Auth::attempt($credentials))
+            return redirect()->action('ProdutoController@listar');
+        else
+            return back()->withErrors(array('message' => 'email e/ou senha incorreto'));
+
     }
 }

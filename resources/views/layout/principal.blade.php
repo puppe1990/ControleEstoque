@@ -29,6 +29,11 @@
                 <li><a href="{{action('CategoriaController@listar')}}">Listar Categoria</a></li>
                 <li><a href="{{action('EntradaController@listarEntrada')}}">Listar Entrada</a></li>
                 <li><a href="{{action('SaidaController@listarSaida')}}">Listar Saída</a></li>
+                <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Sair</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
               </ul>
             </div>
         </nav>
