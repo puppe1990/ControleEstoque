@@ -44,6 +44,9 @@ class EntradaController extends Controller
     public function adiciona(EntradasRequest $request){
 
         Entrada::create($request->all());
+
+        Request::session()->flash('message.level', 'success');
+        Request::session()->flash('message.content', 'Entrada Adicionada com Sucesso!');
         
         return redirect()->action('EntradaController@listarEntrada');
     }
@@ -52,6 +55,9 @@ class EntradaController extends Controller
 
         $entrada = Entrada::find($id_entrada);
         $entrada->delete();
+
+        Request::session()->flash('message.level', 'danger');
+        Request::session()->flash('message.content', 'Entrada Removida com Sucesso!');
 
         return redirect()
                ->action('EntradaController@listarEntrada');
@@ -73,6 +79,9 @@ class EntradaController extends Controller
         $entrada = Entrada::find($id_entrada);
         $params = Request::all();
         $entrada->update($params);
+
+        Request::session()->flash('message.level', 'success');
+        Request::session()->flash('message.content', 'Entrada Alterada com Sucesso!');
 
         return redirect()
                ->action('EntradaController@listarEntrada');

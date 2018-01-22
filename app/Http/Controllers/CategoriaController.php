@@ -22,6 +22,8 @@ class CategoriaController extends Controller
     public function adiciona(CategoriasRequest $request){
 
 		Categoria::create($request->all());
+        Request::session()->flash('message.level', 'success');
+        Request::session()->flash('message.content', 'Categoria Adicionada com Sucesso!');
 		
 		return redirect()->action('CategoriaController@listar')->withInput(Request::only('nome'));
 	}
@@ -30,6 +32,9 @@ class CategoriaController extends Controller
 
         $categoria = Categoria::find($id_categoria);
         $categoria->delete();
+
+        Request::session()->flash('message.level', 'danger');
+        Request::session()->flash('message.content', 'Categoria Removida com Sucesso!');
 
         return redirect()
                ->action('CategoriaController@listar');
@@ -50,6 +55,9 @@ class CategoriaController extends Controller
         $categoria = Categoria::find($id_categoria);
         $params = Request::all();
         $categoria->update($params);
+
+        Request::session()->flash('message.level', 'success');
+        Request::session()->flash('message.content', 'Categoria Alterada com Sucesso!');
 
         return redirect()
                ->action('CategoriaController@listar');

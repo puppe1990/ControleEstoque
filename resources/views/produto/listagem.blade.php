@@ -6,9 +6,15 @@
   <ul>
     <li><a href="{{action('ProdutoController@novo')}}">Cadastrar Produto</a></li>
   </ul>
+
+  @if(session()->has('message.level'))
+    <div class="alert alert-{{ session('message.level') }}"> 
+      {!! session('message.content') !!}
+    </div>
+  @endif
     
 
-  <table id="" class="table table-bordered">
+  <table id="listagem" class="table table-bordered">
     <thead>
       <tr>
         <th>Código Produto</th>

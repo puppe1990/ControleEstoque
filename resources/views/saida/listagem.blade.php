@@ -6,6 +6,12 @@
     <li><a href="{{action('SaidaController@novo')}}">Lançar Saida</a></li>
   </ul>  
 
+  @if(session()->has('message.level'))
+    <div class="alert alert-{{ session('message.level') }}"> 
+      {!! session('message.content') !!}
+    </div>
+  @endif
+
   <table id="listagem" class="table table-bordered">
     <thead>
       <tr>
@@ -24,7 +30,7 @@
           <td>{{ $p->codigo_produto }}</td>
           <td>{{ $p->descricao }}</td>
           <td>R$ {{ $p->valor }}</td>
-          <td>{{ $p->created_at }}</td>
+          <td>{{ date('d-m-Y H:i:s', strtotime($p->created_at))  }}</td>
           <td>{{ $p->quantidade }}</td>
           <td><a href="/ListarSaida/mostrar/{{ $p->id_saida }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
           <td><a href="/ListarSaida/remove/{{ $p->id_saida }}"><span class="glyphicon glyphicon-trash"></span></a></td>

@@ -32,6 +32,9 @@ class SaidaController extends Controller
     public function adiciona(SaidasRequest $request){
 
         Saida::create($request->all());
+
+        Request::session()->flash('message.level', 'success');
+        Request::session()->flash('message.content', 'Saída Adicionada com Sucesso!');
         
         return redirect()->action('SaidaController@listarSaida');
     }
@@ -40,6 +43,9 @@ class SaidaController extends Controller
 
         $saida = Saida::find($id_saida);
         $saida->delete();
+
+        Request::session()->flash('message.level', 'danger');
+        Request::session()->flash('message.content', 'Saída Removida com Sucesso!');
 
         return redirect()
                ->action('SaidaController@listarSaida');
@@ -61,6 +67,9 @@ class SaidaController extends Controller
         $saida = Saida::find($id_saida);
         $params = Request::all();
         $saida->update($params);
+
+        Request::session()->flash('message.level', 'success');
+        Request::session()->flash('message.content', 'Saída Alterada com Sucesso!');
 
         return redirect()
                ->action('SaidaController@listarSaida');

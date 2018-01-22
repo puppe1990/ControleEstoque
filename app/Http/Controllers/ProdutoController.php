@@ -33,6 +33,9 @@ class ProdutoController extends Controller
     public function adiciona(ProdutosRequest $request){
 
 		Produto::create($request->all());
+
+        Request::session()->flash('message.level', 'success');
+        Request::session()->flash('message.content', 'Produto Adicionado com Sucesso!');
 		
 		return redirect()->action('ProdutoController@listar');
 	}
@@ -41,6 +44,9 @@ class ProdutoController extends Controller
 
         $produto = Produto::find($id_produto);
         $produto->delete();
+
+        Request::session()->flash('message.level', 'danger');
+        Request::session()->flash('message.content', 'Produto Removido com Sucesso!');
 
         return redirect()
                ->action('ProdutoController@listar');
@@ -62,6 +68,9 @@ class ProdutoController extends Controller
         $produto = Produto::find($id_produto);
         $params = Request::all();
         $produto->update($params);
+
+        Request::session()->flash('message.level', 'success');
+        Request::session()->flash('message.content', 'Produto Alterado com Sucesso!');
 
         return redirect()
                ->action('ProdutoController@listar');

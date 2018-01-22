@@ -4,7 +4,13 @@
   <h2>Categorias</h2>     
   <ul>
       <li><a href="{{action('CategoriaController@novo')}}">Cadastrar Categoria</a></li>
-  </ul>             
+  </ul>  
+  @if(session()->has('message.level'))
+    <div class="alert alert-{{ session('message.level') }}"> 
+      {!! session('message.content') !!}
+    </div>
+  @endif
+
   <table id="listagem" class="table table-bordered">
     <thead>
       <tr>

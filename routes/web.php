@@ -56,7 +56,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'ProdutoController@listar');
 
 $this->get('/', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/entrar', 'Auth\LoginController@entrar')->name('entrar');
