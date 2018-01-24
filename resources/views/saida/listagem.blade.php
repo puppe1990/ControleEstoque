@@ -30,7 +30,7 @@
           <td>{{ $p->codigo_produto }}</td>
           <td>{{ $p->descricao }}</td>
           <td>R$ {{ $p->valor }}</td>
-          <td>{{ date('d-m-Y H:i:s', strtotime($p->created_at))  }}</td>
+          <td>{{ date('d/m/Y H:i:s', strtotime($p->created_at))  }}</td>
           <td>{{ $p->quantidade }}</td>
           <td><a href="/ListarSaida/mostrar/{{ $p->id_saida }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
           <td><a href="/ListarSaida/remove/{{ $p->id_saida }}"><span class="glyphicon glyphicon-trash"></span></a></td>

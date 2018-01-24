@@ -43,7 +43,7 @@
         <footer>
             <div>Purchase Store 2016-2018</div>
         </footer>
-
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="js/scripts.js"></script>
     </body>
 </html>
