@@ -15,8 +15,9 @@ class ProdutoController extends Controller
         $produtos = Produto
         ::leftJoin('entradas', 'produtos.id_produto', '=', 'entradas.fk_produto')
         ->leftJoin('saidas', 'produtos.id_produto', '=', 'saidas.fk_produto')
-        ->select('produtos.id_produto','produtos.codigo_produto','produtos.descricao', 'produtos.valor',DB::raw('sum(entradas.quantidade) as quantidadeEntrada'),DB::raw('sum(saidas.quantidade) as quantidadeSaida'))
-        ->groupBy('produtos.descricao','produtos.codigo_produto','produtos.valor','produtos.id_produto')
+        ->join('categorias', 'categorias.id_categoria', '=', 'produtos.fk_categoria')
+        ->select('produtos.id_produto','produtos.codigo_produto','produtos.descricao', 'produtos.valor',DB::raw('sum(entradas.quantidade) as quantidadeEntrada'),DB::raw('sum(saidas.quantidade) as quantidadeSaida'),'categorias.nome')
+        ->groupBy('produtos.descricao','produtos.codigo_produto','produtos.valor','produtos.id_produto','categorias.nome')
         ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
         ->orderBy('produtos.id_produto','ASC')
         ->get();

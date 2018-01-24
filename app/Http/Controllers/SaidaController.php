@@ -7,6 +7,7 @@ use App\Produto;
 use App\Categoria;
 use App\Saida;
 use App\Http\Requests\SaidasRequest;
+use Carbon\Carbon; 
 
 
 class SaidaController extends Controller
