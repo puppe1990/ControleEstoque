@@ -32,6 +32,7 @@ class SaidaController extends Controller
 
     public function adiciona(SaidasRequest $request){
 
+        $request["created_at"] = date("Y-m-d H:i:s",strtotime($request->created_at));
         Saida::create($request->all());
 
         Request::session()->flash('message.level', 'success');
@@ -67,6 +68,7 @@ class SaidaController extends Controller
 
         $saida = Saida::find($id_saida);
         $params = Request::all();
+        $params["created_at"] = date("Y-m-d H:i:s",strtotime($params["created_at"]));
         $saida->update($params);
 
         Request::session()->flash('message.level', 'success');

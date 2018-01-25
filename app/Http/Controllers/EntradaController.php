@@ -43,6 +43,8 @@ class EntradaController extends Controller
 
     public function adiciona(EntradasRequest $request){
 
+        $request["created_at"] = date("Y-m-d H:i:s",strtotime($request->created_at));
+
         Entrada::create($request->all());
 
         Request::session()->flash('message.level', 'success');
@@ -78,6 +80,7 @@ class EntradaController extends Controller
 
         $entrada = Entrada::find($id_entrada);
         $params = Request::all();
+        $params["created_at"] = date("Y-m-d H:i:s",strtotime($params["created_at"]));
         $entrada->update($params);
 
         Request::session()->flash('message.level', 'success');

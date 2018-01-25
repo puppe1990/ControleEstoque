@@ -37,7 +37,7 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="quantidade">Data Saída</label>  
         <div class="col-md-4">
-            <input name="created_at" type="date" placeholder="Insira um valor" class="form-control input-md" required>
+            <input name="created_at" id="datetime" type="datetime-local" placeholder="Insira um valor" class="form-control input-md" required>
         </div>
     </div>
 

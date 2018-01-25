@@ -43,11 +43,18 @@ class ProdutoController extends Controller
 
 	public function remove($id_produto){
 
-        $produto = Produto::find($id_produto);
-        $produto->delete();
+        try {
+            $produto = Produto::find($id_produto);
+            $produto->delete();
 
-        Request::session()->flash('message.level', 'danger');
-        Request::session()->flash('message.content', 'Produto Removido com Sucesso!');
+            Request::session()->flash('message.level', 'danger');
+            Request::session()->flash('message.content', 'Produto Removido com Sucesso!');           
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            Request::session()->flash('message.level', 'danger');
+            Request::session()->flash('message.content', 'Para apagar este produto. Você precisa excluir todas entradas e saídas do produto: '.$produto->codigo_produto.' - '.$produto->descricao);
+        }
 
         return redirect()
                ->action('ProdutoController@listar');
