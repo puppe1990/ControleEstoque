@@ -7,6 +7,7 @@ use DB;
 use App\Produto;
 use App\Categoria;
 use App\Http\Requests\ProdutosRequest;
+use App\Repositories\ImageRepository;
 
 class ProdutoController extends Controller
 {
@@ -16,8 +17,8 @@ class ProdutoController extends Controller
         ::leftJoin('entradas', 'produtos.id_produto', '=', 'entradas.fk_produto')
         ->leftJoin('saidas', 'produtos.id_produto', '=', 'saidas.fk_produto')
         ->join('categorias', 'categorias.id_categoria', '=', 'produtos.fk_categoria')
-        ->select('produtos.id_produto','produtos.codigo_produto','produtos.descricao', 'produtos.valor',DB::raw('sum(entradas.quantidade) as quantidadeEntrada'),DB::raw('sum(saidas.quantidade) as quantidadeSaida'),'categorias.nome')
-        ->groupBy('produtos.descricao','produtos.codigo_produto','produtos.valor','produtos.id_produto','categorias.nome')
+        ->select('produtos.id_produto','produtos.codigo_produto','produtos.descricao', 'produtos.valor',DB::raw('sum(entradas.quantidade) as quantidadeEntrada'),DB::raw('sum(saidas.quantidade) as quantidadeSaida'),'categorias.nome','produtos.path_image as imagens')
+        ->groupBy('produtos.descricao','produtos.codigo_produto','produtos.valor','produtos.id_produto','categorias.nome','produtos.path_image')
         ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
         ->orderBy('produtos.id_produto','ASC')
         ->get();
@@ -31,9 +32,15 @@ class ProdutoController extends Controller
     	return view('produto.formulario')->with(['categorias' => $categorias]);
     }
 
-    public function adiciona(ProdutosRequest $request){
+    public function adiciona(ProdutosRequest $request, ImageRepository $repo){
 
-		Produto::create($request->all());
+        // echo "<pre>";var_dump($request->all());exit;
+
+        if ($request->hasFile('primaryImage')) {
+            $request['path_image'] = $repo->saveImage($request->primaryImage, 'produtos', 250);
+        }
+
+        Produto::create($request->all());
 
         Request::session()->flash('message.level', 'success');
         Request::session()->flash('message.content', 'Produto Adicionado com Sucesso!');
@@ -71,11 +78,17 @@ class ProdutoController extends Controller
         return view('produto.edita')->with(['categorias' => $categorias,'p' => $produto]);
     }
 
-    public function edita($id_produto){
+    public function edita($id_produto, ImageRepository $repo){
 
         $produto = Produto::find($id_produto);
         $params = Request::all();
-        $produto->update($params);
+
+        if (isset($params['primaryImage'])) {
+            $produto['path_image'] = $repo->saveImage($params['primaryImage'], 'produtos', 250);
+            $produto->update($params);
+        }else{
+            $produto->update($params);
+        }
 
         Request::session()->flash('message.level', 'success');
         Request::session()->flash('message.content', 'Produto Alterado com Sucesso!');

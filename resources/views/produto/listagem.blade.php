@@ -18,6 +18,7 @@
     <thead>
       <tr>
         <th>Código Produto</th>
+        <th>Foto</th>
         <th>Descrição</th>
         <th>Categoria</th>
         <th>Valor</th>
@@ -32,8 +33,11 @@
     </thead>
     <tbody>
       @foreach($produtos as $p)
+          
+
         <tr>
           <td>{{ $p->codigo_produto }}</td>
+          <td id="imagem">{{ $p->imagens ? "<img width=\"150\" src=\"$p->imagens\">" : 'Sem Foto' }}</td>
           <td>{{ $p->descricao }}</td>
           <td>{{ $p->nome }}</td>
           <td>R${{ $p->valor }}</td>

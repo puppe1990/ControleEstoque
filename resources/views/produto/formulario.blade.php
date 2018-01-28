@@ -1,7 +1,7 @@
 @extends('layout.principal')
 @section('conteudo')
 
-<form class="form-horizontal" method="post" action="/NovoProduto/adiciona">
+<form class="form-horizontal" method="post" action="/NovoProduto/adiciona" enctype="multipart/form-data">
     <fieldset>
 
 
@@ -22,9 +22,11 @@
         </div>    
     @endif  
 
+    {{ csrf_field() }}
+    
     <!-- Text input-->
     <div class="form-group">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        <!-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> -->
 
         <label class="col-md-4 control-label" for="textinput">Código do Produto</label>  
         <div class="col-md-4">
@@ -56,6 +58,13 @@
                     <option value="{{ $c->id_categoria}}">{{ $c->nome}}</option>
                 @endforeach
             </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="categoria">Inserir Foto</label>
+        <div class="col-md-4">
+            <input type='file' id="primaryImage" name="primaryImage" accept="image/*" />
         </div>
     </div>
 

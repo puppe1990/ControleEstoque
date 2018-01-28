@@ -1,7 +1,7 @@
 @extends('layout.principal')
 @section('conteudo')
 
-<form class="form-horizontal" method="post" action="/NovoProduto/edita/{{$p->id_produto}}">
+<form class="form-horizontal" method="post" enctype="multipart/form-data" action="/NovoProduto/edita/{{$p->id_produto}}">
     <fieldset>
 
     <!-- Form Name -->
@@ -10,7 +10,6 @@
     <!-- Text input-->
     <div class="form-group">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
         <label class="col-md-4 control-label" for="textinput">Código do Produto</label>  
         <div class="col-md-4">
             <input id="textinput" name="codigo_produto" value="{{$p->codigo_produto}}" type="text" placeholder="Insira um código" class="form-control input-md" required>
@@ -47,6 +46,22 @@
             </select>
         </div>
     </div>
+
+    <input type="hidden" name="primaryImage">
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="categoria">Alterar Foto</label>
+        <div class="col-md-4">
+            <input type='file' id="primaryImage" name="primaryImage" accept="image/*" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="categoria">Foto Atual</label>
+        <div class="col-md-4">
+            <img width="150" src="{{ $p->path_image }}">
+        </div>
+    </div>     
     <!-- Button -->
     <div class="form-group">
         <label class="col-md-4 control-label" for="salvar"></label>

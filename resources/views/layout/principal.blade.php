@@ -1,6 +1,7 @@
 <!DOCTYPE html>
     <html>
     <head>
+        <meta charset="UTF-8">
         <!-- <link rel="stylesheet" href="{{URL::asset('bootstrap/css/bootstrap.min.css')}}"> -->
         <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet"> -->
         <link href="/css/app.css" rel="stylesheet">
@@ -26,9 +27,9 @@
               </div>
               <ul class="nav navbar-nav">
                 <li class="active"><a href="{{action('ProdutoController@listar')}}">Listar Produtos</a></li>
-                <li><a href="{{action('CategoriaController@listar')}}">Listar Categoria</a></li>
-                <li><a href="{{action('EntradaController@listarEntrada')}}">Listar Entrada</a></li>
-                <li><a href="{{action('SaidaController@listarSaida')}}">Listar Saída</a></li>
+                <li><a href="{{action('CategoriaController@listar')}}">Listar Categorias</a></li>
+                <li><a href="{{action('EntradaController@listarEntrada')}}">Listar Entradas de Produtos</a></li>
+                <li><a href="{{action('SaidaController@listarSaida')}}">Listar Saídas de Produtos</a></li>
                 <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Sair</a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}

@@ -10,7 +10,8 @@
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
-        "laravelnews/laravel-twbs4": "^1.1"
+        "laravelnews/laravel-twbs4": "^1.1",
+        "intervention/image": "dev-master"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
