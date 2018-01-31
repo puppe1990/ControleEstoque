@@ -60,7 +60,6 @@ $(document).ready(function(){
     $("td:nth-child(2)").each(function(){
 	    var $this = $(this);
 	    var t = $this.text();
-	    console.log(t);
 	    $this.html(t.replace('&lt','<').replace('&gt', '>'));
 	});
 
