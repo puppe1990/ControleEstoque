@@ -12,7 +12,7 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <label class="col-md-4 control-label" for="textinput">Nome</label>  
             <div class="col-md-4">
-                <input id="textinput" name="nome" type="text" placeholder="Insira nome da categoria" class="form-control input-md" required>  
+                <input id="textinput" name="nome" value="{{ old('nome') }}" type="text" placeholder="Insira nome da categoria" class="form-control input-md" required>  
             </div>
         </div>
 

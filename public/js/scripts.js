@@ -39,7 +39,8 @@ $(document).ready(function(){
         },
        	columnDefs: [
 	       { type: 'formatted-num', targets: 0 }
-	    ]
+	    ],
+     	"order": [[ 0, "desc" ]]
     } );
 
     $('#listagem').dataTable( {
