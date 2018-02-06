@@ -40,7 +40,8 @@ $(document).ready(function(){
        	columnDefs: [
 	       { type: 'formatted-num', targets: 0 }
 	    ],
-     	"order": [[ 0, "desc" ]]
+     	"order": [[ 0, "desc" ]],
+     	stateSave: true
     } );
 
     $('#listagem').dataTable( {
@@ -50,7 +51,8 @@ $(document).ready(function(){
         columnDefs: [
        		{ type: 'date-uk', targets: 3 }
      	],
-     	"order": [[ 3, "desc" ]]
+     	"order": [[ 3, "desc" ]],
+     	stateSave: true
     } );
 
     $("#categoria").select2(); 
@@ -61,7 +63,5 @@ $(document).ready(function(){
 	    var $this = $(this);
 	    var t = $this.text();
 	    $this.html(t.replace('&lt','<').replace('&gt', '>'));
-	});
-
-    
+	});   
 });
