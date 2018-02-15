@@ -49,7 +49,7 @@ $(document).ready(function(){
             "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
         },
         columnDefs: [
-       		{ type: 'date-uk', targets: 3 }
+       		{ type: 'date-uk', targets: 4 }
      	],
      	"order": [[ 4, "desc" ]],
      	stateSave: true
@@ -65,3 +65,4 @@ $(document).ready(function(){
 	    $this.html(t.replace('&lt','<').replace('&gt', '>'));
 	});   
 });
+
