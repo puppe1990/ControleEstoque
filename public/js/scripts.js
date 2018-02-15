@@ -51,7 +51,7 @@ $(document).ready(function(){
         columnDefs: [
        		{ type: 'date-uk', targets: 3 }
      	],
-     	"order": [[ 3, "desc" ]],
+     	"order": [[ 4, "desc" ]],
      	stateSave: true
     } );
 
