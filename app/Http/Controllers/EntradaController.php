@@ -16,7 +16,7 @@ class EntradaController extends Controller
         // $produtos = Produto::all();
         $produtos = Produto
         ::join('entradas', 'produtos.id_produto', '=', 'entradas.fk_produto')
-        ->select('entradas.id_entrada','produtos.codigo_produto','produtos.descricao', 'produtos.valor', 'entradas.created_at','entradas.quantidade')
+        ->select('entradas.id_entrada','produtos.path_image as imagens','produtos.codigo_produto','produtos.descricao', 'produtos.valor', 'entradas.created_at','entradas.quantidade')
         ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
         ->get();
 
