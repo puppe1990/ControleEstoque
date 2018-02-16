@@ -12,11 +12,14 @@
 */
 Route::group(['middleware' => 'auth'], function () {
 
+	Route::get('/home', 'ProdutoController@listar');
+
 	//Produtos
 	Route::group(['prefix' => 'Produtos'], function(){   
 		Route::get('','ProdutoController@listar');
 		Route::get('/remove/{id_produto}','ProdutoController@remove');
 		Route::get('/mostrar/{id_produto}','ProdutoController@mostra');
+
 	});	
 
 	Route::group(['prefix' => 'NovoProduto'], function(){   
@@ -52,11 +55,19 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/LancarSaida/adiciona','SaidaController@adiciona');
 	Route::post('/LancarSaida/edita/{id_saida}','SaidaController@edita');
 
+	//Vendas
+	Route::get('/ListarVenda','VendaController@listarVenda');
+	Route::get('/ListarVenda/remove/{id_venda}','VendaController@remove');
+	Route::get('/ListarVenda/mostrar/{id_venda}','VendaController@mostra');
+
+	Route::get('/CadastrarVenda','VendaController@novo');
+	Route::post('/CadastrarVenda/adiciona','VendaController@adiciona');
+	Route::post('/CadastrarVenda/edita/{id_venda}','VendaController@edita');
+
 });
 
 
 Auth::routes();
-Route::get('/home', 'ProdutoController@listar');
 
 $this->get('/', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('/entrar', 'Auth\LoginController@entrar')->name('entrar');
