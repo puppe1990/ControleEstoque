@@ -13,7 +13,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-        <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <!-- <link rel="stylesheet" type="text/css" href="/css/personal.css"> -->
         
         <meta name="viewport" content="width=device-width">
 
@@ -22,20 +22,25 @@
     <body>
     	<nav class="navbar navbar-inverse">
             <div class="container-fluid">
-              <div class="navbar-header">
-                <a class="navbar-brand" href="{{action('ProdutoController@listar')}}">Purchase Store</a>
-              </div>
-              <ul class="nav navbar-nav">
-                <li class="active"><a href="{{action('ProdutoController@listar')}}">Listar Produtos</a></li>
-                <li><a href="{{action('CategoriaController@listar')}}">Listar Categorias</a></li>
-                <li><a href="{{action('EntradaController@listarEntrada')}}">Listar Entradas de Produtos</a></li>
-                <li><a href="{{action('SaidaController@listarSaida')}}">Listar Saídas de Produtos</a></li>
-                <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Sair</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
+                <div class="navbar-header">
+                  <a class="navbar-brand" href="{{action('ProdutoController@listar')}}">Purchase Store</a>
+                </div>
+            <div class="dropdown">
+                <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Menus
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li class="active"><a href="{{action('ProdutoController@listar')}}">Listar Produtos</a></li>
+                    <li><a href="{{action('CategoriaController@listar')}}">Listar Categorias</a></li>
+                    <li><a href="{{action('EntradaController@listarEntrada')}}">Listar Entradas de Produtos</a></li>
+                    <li><a href="{{action('SaidaController@listarSaida')}}">Listar Saídas de Produtos</a></li>
+                    <li><a href="{{action('RelatorioController@novo')}}">Listar Relatórios</a></li>
+                    <!-- <li><a href="{{action('VendaController@listarVenda')}}">Listar Vendas(EM BREVE!)</a></li> -->
+                    <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form'         ).submit();">Sair</a>
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                              {{ csrf_field() }}
+                          </form>
                     </li>
-              </ul>
+                </ul>
             </div>
         </nav>
   
@@ -44,8 +49,10 @@
         <footer>
             <div>Purchase Store 2016-2018</div>
         </footer>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/date-uk.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="js/scripts.js"></script>
+        <script type="text/javascript" src="/js/scripts.js"></script>
     </body>
 </html>

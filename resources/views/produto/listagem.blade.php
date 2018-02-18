@@ -33,8 +33,6 @@
     </thead>
     <tbody>
       @foreach($produtos as $p)
-          
-
         <tr>
           <td>{{ $p->codigo_produto }}</td>
           <td id="imagem">{{ $p->imagens ? "<img width=\"150\" src=\"$p->imagens\">" : 'Sem Foto' }}</td>

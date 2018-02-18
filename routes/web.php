@@ -55,6 +55,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/LancarSaida/adiciona','SaidaController@adiciona');
 	Route::post('/LancarSaida/edita/{id_saida}','SaidaController@edita');
 
+	//Relatórios
+	Route::get('/ListarRelatorio','RelatorioController@novo');
+	Route::post('/ListarRelatorio/mostrar/','RelatorioController@mostra');
+
 	//Vendas
 	Route::get('/ListarVenda','VendaController@listarVenda');
 	Route::get('/ListarVenda/remove/{id_venda}','VendaController@remove');
