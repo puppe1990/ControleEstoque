@@ -2,6 +2,7 @@
     <html>
     <head>
         <meta charset="UTF-8">
+        <link href="https://cdn.simplo7.net/static/17741/configuracao/favicon.png" type="image/x-icon" rel="shortcut icon" />
         <!-- <link rel="stylesheet" href="{{URL::asset('bootstrap/css/bootstrap.min.css')}}"> -->
         <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" rel="stylesheet"> -->
         <link href="/css/app.css" rel="stylesheet">
@@ -34,7 +35,9 @@
                     <li><a href="{{action('EntradaController@listarEntrada')}}">Listar Entradas de Produtos</a></li>
                     <li><a href="{{action('SaidaController@listarSaida')}}">Listar Saídas de Produtos</a></li>
                     <li><a href="{{action('RelatorioController@novo')}}">Listar Relatórios</a></li>
-                    <!-- <li><a href="{{action('VendaController@listarVenda')}}">Listar Vendas(EM BREVE!)</a></li> -->
+                    <li><a href="{{action('ClienteController@listar')}}">Listar Clientes</a></li>
+                    <li><a href="{{action('ClienteController@novo')}}">Cadastrar Clientes</a></li>
+                    <!-- <li><a href="{{action('VendaController@listarVenda')}}">Listar Vendas</a></li> -->
                     <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form'         ).submit();">Sair</a>
                           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                               {{ csrf_field() }}

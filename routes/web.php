@@ -59,6 +59,15 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/ListarRelatorio','RelatorioController@novo');
 	Route::post('/ListarRelatorio/mostrar/','RelatorioController@mostra');
 
+	//Clientes
+	Route::get('/ListarCliente','ClienteController@listar');
+	Route::get('/ListarCliente/remove/{id_cliente}','ClienteController@remove');
+	Route::get('/ListarCliente/mostrar/{id_cliente}','ClienteController@mostra');
+
+	Route::get('/CadastrarCliente','ClienteController@novo');
+	Route::post('/CadastrarCliente/adiciona','ClienteController@adiciona');
+	Route::post('/CadastrarCliente/edita/{id_cliente}','ClienteController@edita');
+
 	//Vendas
 	Route::get('/ListarVenda','VendaController@listarVenda');
 	Route::get('/ListarVenda/remove/{id_venda}','VendaController@remove');
