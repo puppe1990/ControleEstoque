@@ -66,7 +66,16 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/CadastrarCliente','ClienteController@novo');
 	Route::post('/CadastrarCliente/adiciona','ClienteController@adiciona');
-	Route::post('/CadastrarCliente/edita/{id_cliente}','ClienteController@edita');
+	Route::post('/CadastrarCliente/edita/{id_cliente}','ClienteController@edita');	
+
+	//Fornecedores
+	Route::get('/ListarFornecedor','FornecedorController@listar');
+	Route::get('/ListarFornecedor/remove/{id_fornecedor}','FornecedorController@remove');
+	Route::get('/ListarFornecedor/mostrar/{id_fornecedor}','FornecedorController@mostra');
+
+	Route::get('/CadastrarFornecedor','FornecedorController@novo');
+	Route::post('/CadastrarFornecedor/adiciona','FornecedorController@adiciona');
+	Route::post('/CadastrarFornecedor/edita/{id_fornecedor}','FornecedorController@edita');
 
 	//Vendas
 	Route::get('/ListarVenda','VendaController@listarVenda');

@@ -16,14 +16,12 @@
             </div>
         </div> 
         <div class="form-group">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <label class="col-md-4 control-label" for="textinput">Celular</label>  
             <div class="col-md-4">
                 <input id="textinput" name="celular" value="{{ old('celular') }}" type="text" placeholder="Insira celular da cliente" class="form-control input-md" required>  
             </div>
         </div>
         <div class="form-group">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <label class="col-md-4 control-label" for="textinput">E-Mail</label>  
             <div class="col-md-4">
                 <input id="textinput" name="email" value="{{ old('email') }}" type="text" placeholder="Insira email da cliente" class="form-control input-md">  
