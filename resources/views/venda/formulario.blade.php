@@ -31,9 +31,16 @@
             </div>           
 
         <div class="form-group">
-            <label class="col-md-4 control-label" for="desconto">Desconto</label>  
+            <label class="col-md-4 control-label" for="desconto">Desconto %</label>  
             <div class="col-md-3">
-                <input id="desconto" name="desconto" value="{{ old('desconto') }}" type="text" placeholder="Insira desconto do produto" class="form-control input-md" required>
+                <input id="descontoPorcent" name="desconto" onfocus="this.value=''" onchange="calcularDescontoPorcent()" value="{{ old('descontoPorcent') }}" type="text" placeholder="Insira desconto em porcentagem do produto" class="form-control input-md" required>
+            </div>
+        </div> 
+
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="desconto">Desconto R$</label>  
+            <div class="col-md-3">
+                <input id="desconto" name="desconto" onfocus="this.value=''" onchange="calcularDesconto()" value="{{ old('desconto') }}" type="text" placeholder="Insira desconto em dinheiro do produto" class="form-control input-md" required>
             </div>
         </div> 
 

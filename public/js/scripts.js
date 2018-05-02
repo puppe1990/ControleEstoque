@@ -148,7 +148,7 @@ function construirDiv(produto,id,valor){
 	let colDiv4 = document.createElement("div");
 	colDiv4.setAttribute("class", "col-md-3");
 	let elementoSubTotal = document.createElement("input");
-	elementoSubTotal.value =  $("#valor"+cont).value;
+	// elementoSubTotal.value =  $("#valor"+cont).value;
 	elementoSubTotal.setAttribute("type", "text");
 	elementoSubTotal.setAttribute("class", "form-control input-md subtotal");
 	elementoQuantidade.setAttribute("onchange", "atualizaTotal(this.value,this.id)");
@@ -176,24 +176,56 @@ function atualizaSubTotal(id,cont) {
 }
 
 
-function atualizaTotal(id,cont) {
+function atualizaTotal() {
 	let $ = document.querySelector.bind(document);
-	// let total = $("#total");
-	// let totalValor = $("#total").value == "" ? 0 : $("#total").value;
-	// let subtotal = $("#subtotal"+cont);
-
-	// total.value = Number(totalValor) + Number(subtotal.value);
 	let tamanho = document.querySelectorAll(".subtotal").length;
-
 	let total = $("#total");
-	console.log(total);
 	total.value = 0;
+
 	for(let i = 0; i < tamanho;i++){
 		let subtotal = document.querySelectorAll(".subtotal")[i].value;
 
 		total.value = Number(total.value) + Number(subtotal);
-		// total.value = "100";
 	}
 
+}
+
+function calcularDesconto() {
+	let $ = document.querySelector.bind(document);
+	let valorDesconto = $("#desconto").value;
+	atualizaTotal();
+	let totalValor = $("#total").value == ""? 0 : $("#total").value;
+	console.log(totalValor);
+	console.log(valorDesconto);
+
+	if(totalValor > 0 && Number(totalValor) > Number(valorDesconto)){
+		let total = $("#total");
+		total.value = totalValor - valorDesconto; 
+		let desconto = $("#descontoPorcent");
+		let valorPorcent = (valorDesconto * 100) / totalValor ;
+		desconto.value = valorPorcent;
+	}else{
+		alert("Desconto em dinheiro não pôde ser aplicado");
+		$("#desconto").value = "";
+	}
+
+}
+
+function calcularDescontoPorcent() {
+	let $ = document.querySelector.bind(document);
+	let valorDesconto = $("#descontoPorcent").value;
+	atualizaTotal();
+	let totalValor = $("#total").value == ""? 0 : $("#total").value;
+
+	if(totalValor > 0 && valorDesconto < 100){
+		let total = $("#total");
+		let valorDinheiro = (totalValor * (valorDesconto / 100));
+		let desconto = $("#desconto");
+		desconto.value = valorDinheiro.toFixed(2);
+		total.value = totalValor - (totalValor * (valorDesconto / 100)); 
+	}else{
+		alert("Desconto em porcentagem não pôde ser aplicado");
+		$("#descontoPorcent").value = "";
+	}
 
 }
