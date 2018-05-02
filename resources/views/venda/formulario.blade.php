@@ -25,48 +25,10 @@
 <form class="form-horizontal" method="post" action="/CadastrarVenda/adiciona">
 
     <fieldset>
-        <!-- <div class="form-group">
-            <label class="col-md-4 control-label" for="produto">Produto</label>   -->
             <div class="container">
                 <div class="row" id="lista">
-                    <!-- <div class="col-md-3">
-                        <label for="fk_produto">Produto</label>
-                        <input type="text" name="fk_produto" value="1" class="form-control input-md" disabled="">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="fk_produto">Quantidade</label>
-                        <input type="text" class="form-control input-md" id="quantidade0" pattern="[0-9]+$" onkeyup="atualizaSubTotal(this.value,cont)" onfocus="this.value=''">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="fk_produto">Valor</label>
-                        <input type="text" class="form-control input-md" id="valor1" disabled="">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="fk_produto">Produto</label>
-                        <input type="text" class="form-control input-md" id="subtotal1" disabled="">
-                    </div>
-                </div>    
-                <div class="row" id="lista">
-                    <div class="col-md-3">
-                        <label for="fk_produto">Produto</label>
-                        <input type="text" name="fk_produto" value="1" class="form-control input-md" disabled="">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="fk_produto">Quantidade</label>
-                        <input type="text" class="form-control input-md" id="quantidade1" pattern="[0-9]+$" onkeyup="atualizaSubTotal(this.value,cont)" onfocus="this.value=''">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="fk_produto">Valor</label>
-                        <input type="text" class="form-control input-md" id="valor2" disabled="">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="fk_produto">Sub Total</label>
-                        <input type="text" class="form-control input-md" id="subtotal2" disabled="">
-                    </div> -->
                 </div>
-            </div>    
-          <!--   </div>
-        </div>  -->       
+            </div>           
 
         <div class="form-group">
             <label class="col-md-4 control-label" for="desconto">Desconto</label>  

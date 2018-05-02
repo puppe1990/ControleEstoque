@@ -109,7 +109,7 @@ function construirDiv(produto,id,valor){
 	let colDiv2 = document.createElement("div");
 	colDiv2.setAttribute("class", "col-md-3");
 	let elementoQuantidade = document.createElement("input");
-	elementoQuantidade.value =  1;
+	// elementoQuantidade.value =  1;
 	elementoQuantidade.setAttribute("type", "text");
 	elementoQuantidade.setAttribute("class", "form-control input-md");
 	elementoQuantidade.setAttribute("id", cont);
@@ -150,7 +150,8 @@ function construirDiv(produto,id,valor){
 	let elementoSubTotal = document.createElement("input");
 	elementoSubTotal.value =  $("#valor"+cont).value;
 	elementoSubTotal.setAttribute("type", "text");
-	elementoSubTotal.setAttribute("class", "form-control input-md");
+	elementoSubTotal.setAttribute("class", "form-control input-md subtotal");
+	elementoQuantidade.setAttribute("onchange", "atualizaTotal(this.value,this.id)");
 	elementoSubTotal.setAttribute("id", "subtotal"+cont);
 	elementoSubTotal.disabled = true;
 
@@ -169,12 +170,30 @@ function atualizaSubTotal(id,cont) {
 	let $ = document.querySelector.bind(document);
 	let subtotal = $("#subtotal"+cont);
 	let quantidade = id;
-	// console.log(quantidade);
-	// console.log(cont);
 	let valor = $("#valor"+cont).value;
-	// console.log($("#valor"+cont));
-
 	let total = valor * quantidade;
-	// console.log(total.toFixed(2));
 	subtotal.value = total.toFixed(2);
+}
+
+
+function atualizaTotal(id,cont) {
+	let $ = document.querySelector.bind(document);
+	// let total = $("#total");
+	// let totalValor = $("#total").value == "" ? 0 : $("#total").value;
+	// let subtotal = $("#subtotal"+cont);
+
+	// total.value = Number(totalValor) + Number(subtotal.value);
+	let tamanho = document.querySelectorAll(".subtotal").length;
+
+	let total = $("#total");
+	console.log(total);
+	total.value = 0;
+	for(let i = 0; i < tamanho;i++){
+		let subtotal = document.querySelectorAll(".subtotal")[i].value;
+
+		total.value = Number(total.value) + Number(subtotal);
+		// total.value = "100";
+	}
+
+
 }
