@@ -56,6 +56,7 @@ $(document).ready(function(){
     } );
 
     $("#categoria").select2(); 
+    $("#nomeClientes").select2(); 
 
 
 	//Tive que usar este trecho pois não consegui converter o html_entities que estava retornando
@@ -92,8 +93,9 @@ function construirDiv(produto,id,valor){
 	let elementoProduto = document.createElement("input");
 	elementoProduto.value =  produto;
 	elementoProduto.setAttribute("type", "text");
-	elementoProduto.setAttribute("name", "fk_produto");
-	elementoProduto.setAttribute("value", id);
+	// elementoProduto.setAttribute("name", "fk_produto[]");
+	// elementoProduto.setAttribute("value", id);
+	// elementoProduto.setAttribute("id", "fk_produto");
 	elementoProduto.setAttribute("class", "form-control input-md");
 	elementoProduto.disabled = true;
 
@@ -105,6 +107,14 @@ function construirDiv(produto,id,valor){
 	colDiv.appendChild(elementoProduto);
 	input.appendChild(colDiv);	
 
+	//hidden produto
+	let hiddenProduto = document.createElement("input");
+	hiddenProduto.value = id; 
+	hiddenProduto.setAttribute("id", "fk_produto");
+	hiddenProduto.setAttribute("name", "saida[fk_produto][]");
+	hiddenProduto.setAttribute("type", "hidden");
+	input.appendChild(hiddenProduto);
+
 	//criação input quantidade
 	let colDiv2 = document.createElement("div");
 	colDiv2.setAttribute("class", "col-md-3");
@@ -112,6 +122,7 @@ function construirDiv(produto,id,valor){
 	// elementoQuantidade.value =  1;
 	elementoQuantidade.setAttribute("type", "text");
 	elementoQuantidade.setAttribute("class", "form-control input-md");
+	elementoQuantidade.setAttribute("name", "saida[quantidade][]");
 	elementoQuantidade.setAttribute("id", cont);
 	elementoQuantidade.setAttribute("pattern", "[0-9]+$");
 	elementoQuantidade.setAttribute("onkeyup", "atualizaSubTotal(this.value,this.id)");
@@ -151,7 +162,7 @@ function construirDiv(produto,id,valor){
 	// elementoSubTotal.value =  $("#valor"+cont).value;
 	elementoSubTotal.setAttribute("type", "text");
 	elementoSubTotal.setAttribute("class", "form-control input-md subtotal");
-	elementoQuantidade.setAttribute("onchange", "atualizaTotal(this.value,this.id)");
+	elementoQuantidade.setAttribute("onchange", "atualizaTotal('geral')");
 	elementoSubTotal.setAttribute("id", "subtotal"+cont);
 	elementoSubTotal.disabled = true;
 
@@ -176,10 +187,16 @@ function atualizaSubTotal(id,cont) {
 }
 
 
-function atualizaTotal() {
+function atualizaTotal(param = 0) {
 	let $ = document.querySelector.bind(document);
 	let tamanho = document.querySelectorAll(".subtotal").length;
 	let total = $("#total");
+	
+	if(param == "geral"){
+		$("#desconto").value = "";
+		$("#descontoPorcent").value = "";	
+	}
+		
 	total.value = 0;
 
 	for(let i = 0; i < tamanho;i++){

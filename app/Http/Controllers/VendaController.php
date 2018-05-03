@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use Request;
 use App\Venda;
 use App\Produto;
+use App\Saida;
+use App\Cliente;
 use App\Http\Requests\VendaRequest;
 
 class VendaController extends Controller
@@ -18,17 +20,28 @@ class VendaController extends Controller
     }
 
     public function novo(){
-    	$produtos = Produto::all();
-        return view('venda.formulario')->with(['produtos' => $produtos]);
+        $produtos = Produto::all();
+    	$clientes = Cliente::all();
+        return view('venda.formulario')->with(['produtos' => $produtos,'clientes' => $clientes]);
     }
 
-    public function adiciona(VendasRequest $request){
+    public function adiciona(VendaRequest $request){
 
-		Venda::create($request->all());
+        $request = Request::all();
+        $tamanho = count($request["saida"]["quantidade"]);
+
+        $request["created_at"] = date("Y-m-d H:i:s",strtotime($request["created_at"]));
+        
+        var_dump($request["created_at"]);
+        // exit;
+        for($i = 0;$i <= $tamanho - 1;$i++){
+            Saida::create(['fk_produto' => $request["saida"]["fk_produto"][$i], 'quantidade' => $request["saida"]["quantidade"][$i],'created_at' => $request["created_at"]]);
+        }
+
         Request::session()->flash('message.level', 'success');
         Request::session()->flash('message.content', 'Venda Adicionada com Sucesso!');
 		
-		return redirect()->action('VendaController@listar')->withInput(Request::only('nome'));
+		return redirect()->action('VendaController@listarVenda')->withInput(Request::only('nome'));
 	}
 
     public function remove($id_venda){
@@ -40,7 +53,7 @@ class VendaController extends Controller
         Request::session()->flash('message.content', 'Venda Removida com Sucesso!');
 
         return redirect()
-               ->action('VendaController@listar');
+               ->action('VendaController@listarVenda');
     }
 
     public function mostra($id){
@@ -63,6 +76,6 @@ class VendaController extends Controller
         Request::session()->flash('message.content', 'Venda Alterada com Sucesso!');
 
         return redirect()
-               ->action('VendaController@listar');
+               ->action('VendaController@listarVenda');
     }
 }
