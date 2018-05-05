@@ -30,10 +30,12 @@ class VendaController extends Controller
         $request = Request::all();
         $tamanho = count($request["saida"]["quantidade"]);
 
+        // var_dump($request);exit;
         $request["created_at"] = date("Y-m-d H:i:s",strtotime($request["created_at"]));
         
-        var_dump($request["created_at"]);
-        // exit;
+        Venda::create(['valor_venda' => $request["valor_venda"],'desconto' => $request["desconto"],'porcentagem' => $request["porcentagem"],'online' => $request["online"],
+            'fk_cliente' => $request["fk_cliente"],'created_at' => $request["created_at"]]);
+
         for($i = 0;$i <= $tamanho - 1;$i++){
             Saida::create(['fk_produto' => $request["saida"]["fk_produto"][$i], 'quantidade' => $request["saida"]["quantidade"][$i],'created_at' => $request["created_at"]]);
         }
@@ -78,4 +80,5 @@ class VendaController extends Controller
         return redirect()
                ->action('VendaController@listarVenda');
     }
+
 }

@@ -27,9 +27,9 @@
 
     <fieldset>
         <div class="form-group">
-            <label class="col-md-4 control-label" for="produto">Nome da Cliente</label>
+            <label class="col-md-4 control-label" for="cliente">Nome da Cliente</label>
             <div class="col-md-3">
-                <select id="nomeClientes" class="form-control">
+                <select id="nomeClientes" name="fk_cliente" class="form-control">
                     @foreach($clientes as $c)
                         <option value="{{ $c->id_clientes }}">{{ $c->nome }}</option>
                     @endforeach
@@ -42,9 +42,9 @@
             </div>           
 
         <div class="form-group">
-            <label class="col-md-4 control-label" for="desconto">Desconto %</label>  
+            <label class="col-md-4 control-label" for="porcentagem">Desconto %</label>  
             <div class="col-md-3">
-                <input id="descontoPorcent" name="desconto" onfocus="this.value=''" onchange="calcularDescontoPorcent()" value="{{ old('descontoPorcent') }}" type="text" placeholder="Insira desconto em porcentagem do produto" class="form-control input-md">
+                <input id="descontoPorcent" name="porcentagem" onfocus="this.value=''" onchange="calcularDescontoPorcent()" value="{{ old('descontoPorcent') }}" type="text" placeholder="Insira desconto em porcentagem do produto" class="form-control input-md">
             </div>
         </div> 
 
@@ -63,9 +63,17 @@
         </div>
 
         <div class="form-group">
+            <label class="col-md-4 control-label" for="quantidade">On-line</label>  
+            <div class="col-md-3">
+                <input name="online" id="online" type="checkbox" value="1">
+            </div>
+        </div>
+
+        <div class="form-group">
             <label class="col-md-4 control-label" for="desconto">Total</label>  
             <div class="col-md-3">
                 <input id="total" name="total" value="{{ old('total') }}" type="text" class="form-control input-md" disabled>
+                <input id="valorVenda" name="valor_venda" type="hidden">
             </div>
         </div>
         
@@ -75,7 +83,7 @@
         <div class="form-group">
             <label class="col-md-5 control-label" for="salvar"></label>
             <div class="col-md-3">
-              <button class="btn btn-success">SALVAR</button>
+              <button class="btn btn-success" onclick="valorTotal()">SALVAR</button>
             </div>
         </div> 
 </form>

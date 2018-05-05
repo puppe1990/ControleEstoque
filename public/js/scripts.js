@@ -246,3 +246,10 @@ function calcularDescontoPorcent() {
 	}
 
 }
+
+function valorTotal(){
+	let $ = document.querySelector.bind(document);
+	let valorVenda = $("#valorVenda");
+	let total = $("#total");
+	valorVenda.value = total.value;	        
+}
