@@ -13,10 +13,15 @@ use App\Http\Requests\VendaRequest;
 class VendaController extends Controller
 {
     public function listarVenda(){
-        // $vendas = Venda::all();
+        $vendas = Venda::all();
 
-    	// return view('venda.listagem')->with(['vendas' => $vendas]);
-    	return view('venda.listagem');
+        $vendas = Venda
+        ::join('clientes', 'clientes.id_clientes', '=', 'vendas.fk_cliente')
+        ->select()
+        ->getQuery('vendas.id_vendas','vendas.valor_venda','vendas.desconto','vendas.porcentagem','vendas.online','vendas.created_at','clientes.nome') // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
+        ->get();
+
+    	return view('venda.listagem')->with(['vendas' => $vendas]);
     }
 
     public function novo(){
@@ -30,14 +35,15 @@ class VendaController extends Controller
         $request = Request::all();
         $tamanho = count($request["saida"]["quantidade"]);
 
-        // var_dump($request);exit;
         $request["created_at"] = date("Y-m-d H:i:s",strtotime($request["created_at"]));
         
-        Venda::create(['valor_venda' => $request["valor_venda"],'desconto' => $request["desconto"],'porcentagem' => $request["porcentagem"],'online' => $request["online"],
+        $venda = Venda::create(['valor_venda' => $request["valor_venda"],'desconto' => $request["desconto"],'porcentagem' => $request["porcentagem"],'online' => $request["online"],
             'fk_cliente' => $request["fk_cliente"],'created_at' => $request["created_at"]]);
 
+        $insertedId = $venda->id_venda;
+
         for($i = 0;$i <= $tamanho - 1;$i++){
-            Saida::create(['fk_produto' => $request["saida"]["fk_produto"][$i], 'quantidade' => $request["saida"]["quantidade"][$i],'created_at' => $request["created_at"]]);
+            Saida::create(['fk_produto' => $request["saida"]["fk_produto"][$i], 'quantidade' => $request["saida"]["quantidade"][$i],'created_at' => $request["created_at"],'fk_venda' => $insertedId]);
         }
 
         Request::session()->flash('message.level', 'success');

@@ -65,6 +65,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="quantidade">On-line</label>  
             <div class="col-md-3">
+                <input name="online" type="hidden" value="0">
                 <input name="online" id="online" type="checkbox" value="1">
             </div>
         </div>

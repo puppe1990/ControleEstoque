@@ -14,7 +14,6 @@ class SaidaController extends Controller
 {
     public function listarSaida(){
 
-        // $produtos = Produto::all();
         $produtos = Produto
         ::join('saidas', 'produtos.id_produto', '=', 'saidas.fk_produto')
         ->select('saidas.id_saida','produtos.path_image as imagens','produtos.codigo_produto','produtos.descricao', 'produtos.valor', 'saidas.created_at','saidas.quantidade')
