@@ -3,7 +3,13 @@
 
 <fieldset>
     <!-- Form Name -->
-    <legend>Edita Venda</legend>
+    <legend>Edita Venda
+        <button type="button" class="btn btn-default btn-number">
+            <a href="{{action('ClienteController@novo')}}" target="_blank">
+                <span class="glyphicon glyphicon-user">Cadastrar Cliente</span>
+            </a>
+        </button>
+    </legend>
 
     <!-- Text input-->
     <div class="form-group">
