@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 // use Illuminate\Http\Request;
 use Request;
+use DB;
 use App\Venda;
 use App\Produto;
 use App\Saida;
@@ -54,11 +55,17 @@ class VendaController extends Controller
 
     public function remove($id_venda){
 
-        $venda = Venda::find($id_venda);
-        $venda->delete();
+        try{
+            $venda = Venda::find($id_venda);
+            $venda->delete();
 
-        Request::session()->flash('message.level', 'danger');
-        Request::session()->flash('message.content', 'Venda Removida com Sucesso!');
+            Request::session()->flash('message.level', 'danger');
+            Request::session()->flash('message.content', 'Venda Removida com Sucesso!');
+        } catch (\Exception $e){
+            DB::rollback();
+            Request::session()->flash('message.level', 'danger');
+            Request::session()->flash('message.content', 'Para apagar esta venda. Você precisa excluir todas as saídas vinculadas a esta venda.');
+        }    
 
         return redirect()
                ->action('VendaController@listarVenda');
@@ -68,17 +75,37 @@ class VendaController extends Controller
 
         $venda = Venda::find($id);
 
+        $produtosSaida = Produto
+        ::join('saidas','saidas.fk_produto', '=', 'produtos.id_produto')
+        ->join('vendas', 'vendas.id_venda', '=', 'saidas.fk_venda')
+        ->select('produtos.descricao','produtos.id_produto','produtos.valor','saidas.quantidade','produtos.codigo_produto','saidas.id_saida','saidas.fk_venda')
+        ->where('saidas.fk_venda','=',$venda->id_venda)
+        ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
+        ->get();
+
+        $clientes = Cliente::all();
+        $produtos = Produto::all();
+
         if(empty($venda)) {
             return "Essa venda não existe";
         }
-        return view('venda.edita')->with('c', $venda);
+        return view('venda.edita')->with(['v'=> $venda, 'produtos' => $produtos,'clientes' => $clientes, 'produtosSaida' => $produtosSaida]);
     }
 
     public function edita($id_venda){
 
         $venda = Venda::find($id_venda);
         $params = Request::all();
+        $params["created_at"] = date("Y-m-d H:i:s",strtotime($params["created_at"]));
         $venda->update($params);
+        $tamanho = count($params["saida"]["quantidade"]);
+
+        $saida = Saida::where('fk_venda', $params["fk_venda"]);
+        $saida->delete();
+
+        for($i = 0;$i <= $tamanho - 1;$i++){
+            Saida::create(['fk_produto' => $params["saida"]["fk_produto"][$i], 'quantidade' => $params["saida"]["quantidade"][$i],'created_at' => $params["created_at"],'fk_venda' => $params["id_venda"]]);
+        }
 
         Request::session()->flash('message.level', 'success');
         Request::session()->flash('message.content', 'Venda Alterada com Sucesso!');

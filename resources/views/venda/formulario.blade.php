@@ -3,7 +3,14 @@
 
 <fieldset>
     <!-- Form Name -->
-    <legend>Cadastro de Venda</legend>
+    <legend>Cadastro de Venda
+        <button type="button" class="btn btn-default btn-number">
+            <a href="{{action('ClienteController@novo')}}">
+                <span class="glyphicon glyphicon-user">Cadastrar Cliente</span>
+            </a>
+        </button>
+    </legend>
+
 
     <!-- Text input-->
     <div class="form-group">
@@ -16,10 +23,11 @@
             </select>                
         </div>
         <span class="input-group-btn">
-                  <button type="button" class="btn btn-default btn-number" onclick="listaVenda()" data-type="plus" data-field="quant[1]">
-                      <span class="glyphicon glyphicon-plus"></span>
-                  </button>
-            </span>
+            <button type="button" class="btn btn-default btn-number" onclick="listaVenda()" data-type="plus" data-field="quant[1]">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+            
+        </span>
     </div>
 </fieldset>
 <form class="form-horizontal" method="post" action="/CadastrarVenda/adiciona">

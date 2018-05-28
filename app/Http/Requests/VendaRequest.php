@@ -24,7 +24,6 @@ class VendaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
         ];
     }
 }

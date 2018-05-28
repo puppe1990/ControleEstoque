@@ -14,7 +14,6 @@ class AddFkVendaTableSaidas extends Migration
     public function up()
     {
         Schema::table('saidas', function (Blueprint $table) {
-            // $table->integer('fk_venda')->default('1');
             $table->integer('fk_venda')->unsigned();
             $table->foreign('fk_venda')->references('id_venda')->on('vendas');
         });

@@ -33,7 +33,7 @@
           <td>{{ $v->nome }}</td>
           <td>R$ {{ $v->valor_venda }}</td>
           <td>R$ {{ $v->desconto }}</td>
-          <td>R$ {{ $v->porcentagem }}</td>
+          <td>{{ $v->porcentagem }}%</td>
           <td>{{ $v->online == 1 ? 'Sim' : 'Não' }}</td>
           <td>{{ date('d/m/Y', strtotime($v->created_at)) }}</td>
           <td>{{ date('H:i:s', strtotime($v->created_at)) }}</td>

@@ -78,8 +78,15 @@ function listaVenda() {
 	construirDiv(nomeProduto,idProduto,valorProduto);
 }
 
+var idCont = $("#cont");
 
-var cont = 0;
+if(idCont.val() != undefined){
+	var cont = idCont.val();
+}else{
+	var cont = 0;	
+}
+
+
 function construirDiv(produto,id,valor){
 
 	let $ = document.querySelector.bind(document);
@@ -88,14 +95,15 @@ function construirDiv(produto,id,valor){
 	let colDiv = document.createElement("div");
 	colDiv.setAttribute("class", "col-md-3");
 
+	//entorno div
+	let linhaDiv = document.createElement("div");
+	linhaDiv.setAttribute("id","row"+cont); 
+
 	//criação do input produto
 	let input = $("#lista");
 	let elementoProduto = document.createElement("input");
 	elementoProduto.value =  produto;
 	elementoProduto.setAttribute("type", "text");
-	// elementoProduto.setAttribute("name", "fk_produto[]");
-	// elementoProduto.setAttribute("value", id);
-	// elementoProduto.setAttribute("id", "fk_produto");
 	elementoProduto.setAttribute("class", "form-control input-md");
 	elementoProduto.disabled = true;
 
@@ -105,7 +113,8 @@ function construirDiv(produto,id,valor){
 
 	colDiv.appendChild(elementoProduto2);
 	colDiv.appendChild(elementoProduto);
-	input.appendChild(colDiv);	
+	input.appendChild(linhaDiv);
+	linhaDiv.appendChild(colDiv);	
 
 	//hidden produto
 	let hiddenProduto = document.createElement("input");
@@ -113,7 +122,7 @@ function construirDiv(produto,id,valor){
 	hiddenProduto.setAttribute("id", "fk_produto");
 	hiddenProduto.setAttribute("name", "saida[fk_produto][]");
 	hiddenProduto.setAttribute("type", "hidden");
-	input.appendChild(hiddenProduto);
+	linhaDiv.appendChild(hiddenProduto);
 
 	//criação input quantidade
 	let colDiv2 = document.createElement("div");
@@ -134,12 +143,12 @@ function construirDiv(produto,id,valor){
 	colDiv2.appendChild(elementoQuantidade2);
 
 	colDiv2.appendChild(elementoQuantidade);
-	input.appendChild(colDiv2);	
+	linhaDiv.appendChild(colDiv2);	
 
 
 	//criação input valor
 	let colDiv3 = document.createElement("div");
-	colDiv3.setAttribute("class", "col-md-3");
+	colDiv3.setAttribute("class", "col-md-2");
 	let elementoValor = document.createElement("input");
 	elementoValor.value =  valor;
 	elementoValor.setAttribute("type", "text");
@@ -153,13 +162,12 @@ function construirDiv(produto,id,valor){
 	colDiv3.appendChild(elementoValor2);
 
 	colDiv3.appendChild(elementoValor);
-	input.appendChild(colDiv3);	
+	linhaDiv.appendChild(colDiv3);	
 
 	//criação input subtotal
 	let colDiv4 = document.createElement("div");
-	colDiv4.setAttribute("class", "col-md-3");
+	colDiv4.setAttribute("class", "col-md-2");
 	let elementoSubTotal = document.createElement("input");
-	// elementoSubTotal.value =  $("#valor"+cont).value;
 	elementoSubTotal.setAttribute("type", "text");
 	elementoSubTotal.setAttribute("class", "form-control input-md subtotal");
 	elementoQuantidade.setAttribute("onchange", "atualizaTotal('geral')");
@@ -167,12 +175,31 @@ function construirDiv(produto,id,valor){
 	elementoSubTotal.disabled = true;
 
 	let elementoSubTotal2 = document.createElement("label");
-	let conteudo4 = document.createTextNode("Valor");
+	let conteudo4 = document.createTextNode("Sub Total");
 	elementoSubTotal2.appendChild(conteudo4);
 	colDiv4.appendChild(elementoSubTotal2);
 
 	colDiv4.appendChild(elementoSubTotal);
-	input.appendChild(colDiv4);
+	linhaDiv.appendChild(colDiv4);
+
+	//botão deletar
+	let colDiv5 = document.createElement("div");
+	colDiv5.setAttribute("class", "col-md-1");
+	let elementoDelete = document.createElement("button");
+	elementoDelete.setAttribute("type", "button");
+	elementoDelete.setAttribute("class", "btn btn-danger btn-sm");
+	elementoDelete.setAttribute("id", cont);
+	elementoDelete.setAttribute("onclick", "deletaProduto(this.id)");
+	elementoDelete.innerHTML = "Deletar Produto";
+
+	let elementoSubTotal3 = document.createElement("label");
+	let conteudo5 = document.createTextNode("Deletar");
+	elementoSubTotal3.appendChild(conteudo5);
+	colDiv5.appendChild(elementoSubTotal3);
+
+	colDiv5.appendChild(elementoDelete);
+	linhaDiv.appendChild(colDiv5);
+
 	cont++;
 
 }
@@ -193,8 +220,8 @@ function atualizaTotal(param = 0) {
 	let total = $("#total");
 	
 	if(param == "geral"){
-		$("#desconto").value = "";
-		$("#descontoPorcent").value = "";	
+		$("#desconto").value = 0;
+		$("#descontoPorcent").value = 0;	
 	}
 		
 	total.value = 0;
@@ -253,3 +280,14 @@ function valorTotal(){
 	let total = $("#total");
 	valorVenda.value = total.value;	        
 }
+
+function deletaProduto(valor){
+	let $ = document.querySelector.bind(document);
+	let elemento = $("#row"+valor);
+	elemento.remove();
+	$("#desconto").value = 0;
+	$("#descontoPorcent").value = 0;	
+	atualizaTotal();
+}
+
+atualizaTotal();
