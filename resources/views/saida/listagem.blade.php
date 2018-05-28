@@ -2,10 +2,6 @@
 @section('conteudo')
 <div class="container">
   <h2>Saídas</h2>
-  <ul class="nav navbar-nav">
-    <li><a href="{{action('SaidaController@novo')}}">Lançar Saida</a></li>
-  </ul>  
-
   @if(session()->has('message.level'))
     <div class="alert alert-{{ session('message.level') }}"> 
       {!! session('message.content') !!}
@@ -34,8 +30,8 @@
           <td id="imagem">{{ $p->imagens ? "<img width=\"150\" src=\"$p->imagens\">" : 'Sem Foto' }}</td>
           <td>{{ $p->descricao }}</td>
           <td>R$ {{ $p->valor }}</td>
-          <td>{{ date('d/m/Y', strtotime($p->created_at))  }}</td>
-          <td>{{ date('H:i:s', strtotime($p->created_at))  }}</td>
+          <td>{{ date('d/m/Y', strtotime($p->created_at)) }}</td>
+          <td>{{ date('H:i:s', strtotime($p->created_at)) }}</td>
           <td>{{ $p->quantidade }}</td>
           <td>{{ $p->fk_venda }}</td>
           <td><a href="/ListarSaida/mostrar/{{ $p->id_saida }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
