@@ -13,7 +13,7 @@ class VendaRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,6 @@ class VendaRequest extends FormRequest
     public function rules()
     {
         return [
-            //
         ];
     }
 }

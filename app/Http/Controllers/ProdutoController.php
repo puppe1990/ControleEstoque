@@ -37,8 +37,6 @@ class ProdutoController extends Controller
 
     public function adiciona(ProdutosRequest $request, ImageRepository $repo){
 
-        // echo "<pre>";var_dump($request->all());exit;
-
         if ($request->hasFile('primaryImage')) {
             $request['path_image'] = $repo->saveImage($request->primaryImage, 'produtos', 250);
         }

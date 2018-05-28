@@ -15,12 +15,32 @@
     <thead>
       <tr>
         <th>#</th>
-        <th>Nome Categoria</th>
-        <th>Editar Categoria</th>
-        <th>Remover Categoria</th>
+        <th>Nome Cliente</th>
+        <th>Valor Venda</th>
+        <th>Desconto R$</th>
+        <th>Desconto %</th>
+        <th>On-Line</th>
+        <th>Data</th>
+        <th>Horário</th>
+        <th>Editar Venda</th>
+        <th>Remover Venda</th>
       </tr>
     </thead>
     <tbody>
+      @foreach($vendas as $v)
+        <tr>
+          <td>{{ $v->id_venda }}</td>
+          <td>{{ $v->nome }}</td>
+          <td>R$ {{ $v->valor_venda }}</td>
+          <td>R$ {{ $v->desconto }}</td>
+          <td>{{ $v->porcentagem }}%</td>
+          <td>{{ $v->online == 1 ? 'Sim' : 'Não' }}</td>
+          <td>{{ date('d/m/Y', strtotime($v->created_at)) }}</td>
+          <td>{{ date('H:i:s', strtotime($v->created_at)) }}</td>
+          <td><a href="/ListarVenda/mostrar/{{ $v->id_venda }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+          <td><a href="/ListarVenda/remove/{{ $v->id_venda }}"><span class="glyphicon glyphicon-trash"></span></a></td>
+        </tr>
+      @endforeach
     </tbody>
   </table>
 </div>

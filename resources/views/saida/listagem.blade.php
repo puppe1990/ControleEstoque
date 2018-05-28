@@ -22,7 +22,8 @@
         <th>Data</th>
         <th>Horário</th>
         <th>Quantidade</th>
-        <th>Editar</th>
+        <th>Código da Venda</th>
+        <th>Mostrar</th>
         <th>Excluir</th>
       </tr>
     </thead>
@@ -36,6 +37,7 @@
           <td>{{ date('d/m/Y', strtotime($p->created_at))  }}</td>
           <td>{{ date('H:i:s', strtotime($p->created_at))  }}</td>
           <td>{{ $p->quantidade }}</td>
+          <td>{{ $p->fk_venda }}</td>
           <td><a href="/ListarSaida/mostrar/{{ $p->id_saida }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
           <td><a href="/ListarSaida/remove/{{ $p->id_saida }}"><span class="glyphicon glyphicon-trash"></span></a></td>
         </tr>
