@@ -6,6 +6,7 @@ use Request;
 use DB;
 use App\Categoria;
 use App\Produto;
+use App\Venda;
 use App\Http\Requests\RelatorioRequest;
 
 class RelatorioController extends Controller
@@ -56,7 +57,20 @@ class RelatorioController extends Controller
 		        ->orderBy('contador','DESC')
 		        ->get();
 		        $_REQUEST["id_relatorio"] = $request["id_relatorio"];
+				break;			
+
+			case '4':
+				$relatorios = Venda
+		        ::select(DB::raw('sum(vendas.valor_venda) as valor'),DB::raw('sum(vendas.online) as quantidade'))
+        		->whereBetween('vendas.created_at',array($request["inicio"],$request["fim"]))
+		        // ->groupBy('categorias.nome')
+		        ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
+		        // ->orderBy('contador','DESC')
+		        ->get();
+		        $_REQUEST["id_relatorio"] = $request["id_relatorio"];
 				break;
+
+
 
 			
 			default:

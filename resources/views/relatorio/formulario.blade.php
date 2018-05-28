@@ -16,6 +16,7 @@
                       <option value="1">Produtos Mais Vendidos</option>
                       <option value="2">Categorias Mais Vendidas</option>
                       <option value="3">Categorias Mais Entradas</option>
+                      <option value="4">Quantidade de vendas on-line</option>
               </select>
             </div>
         </div>
@@ -48,9 +49,6 @@
             @case(1)
                 <table id="listagem" class="table table-bordered">
                     <thead>
-    <!--                   <tr>
-                          <th colspan="3">Relatório Produtos Mais Vendidos</th>
-                      </tr>  --> 
                       <tr>
                         <th>Código Produto</th>
                         <th>Descrição</th>
@@ -99,6 +97,25 @@
                         <tr>
                           <td>{{ $r->nome }}</td>
                           <td>{{ $r->contador }}</td>
+                        </tr>
+                      @endforeach
+                    </tbody>
+                </table>
+                @break           
+            @case(4)
+
+                <table id="listagem" class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Valor</th>
+                        <th>Quantidade de vendas</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @foreach($relatorios as $r)
+                        <tr>
+                          <td>R${{ $r->valor }}</td>
+                          <td>{{ $r->quantidade }}</td>
                         </tr>
                       @endforeach
                     </tbody>
