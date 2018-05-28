@@ -5,7 +5,7 @@
     <!-- Form Name -->
     <legend>Edita Venda
         <button type="button" class="btn btn-default btn-number">
-            <a href="{{action('ClienteController@novo')}}" target="_blank">
+            <a href="{{ action('ClienteController@novo') }}" target="_blank">
                 <span class="glyphicon glyphicon-user">Cadastrar Cliente</span>
             </a>
         </button>

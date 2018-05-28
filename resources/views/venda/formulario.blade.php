@@ -18,7 +18,7 @@
         <div class="col-md-3">
             <select id="categoria" class="form-control">
                 @foreach($produtos as $p)
-                    <option label="{{ $p->valor }}" value="{{ $p->codigo_produto }}">{!! $p->codigo_produto !!} - {!! $p->descricao !!}</option>
+                    <option label="{{ $p->valor }}" value="{{ $p->id_produto }}">{!! $p->codigo_produto !!} - {!! $p->descricao !!}</option>
                 @endforeach
             </select>                
         </div>
