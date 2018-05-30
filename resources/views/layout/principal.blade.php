@@ -45,6 +45,7 @@
                           </form>
                     </li>
                 </ul>
+                <a href="{{action('VendaController@novo')}}">Cadastrar Venda</a>
             </div>
         </nav>
   
