@@ -38,9 +38,9 @@ $(document).ready(function(){
             "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
         },
         columnDefs: [
-       		{ type: 'formatted-num', targets: 5 }
+       		{ type: 'formatted-num', targets: 6 }
      	],
-     	"order": [[ 5, "desc" ]],
+     	"order": [[ 6, "desc" ]],
      	stateSave: true
     } );
 
