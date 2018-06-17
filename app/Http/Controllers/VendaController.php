@@ -18,8 +18,9 @@ class VendaController extends Controller
 
         $vendas = Venda
         ::join('clientes', 'clientes.id_clientes', '=', 'vendas.fk_cliente')
+        ->join('saidas', 'saidas.fk_venda', '=', 'vendas.id_venda')
         ->select()
-        ->getQuery('vendas.id_vendas','vendas.valor_venda','vendas.desconto','vendas.porcentagem','vendas.online','vendas.created_at','clientes.nome') // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
+        ->getQuery('vendas.id_vendas','vendas.valor_venda','vendas.desconto','vendas.porcentagem','vendas.online','saidas.created_at','clientes.nome') // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
         ->get();
 
     	return view('venda.listagem')->with(['vendas' => $vendas]);
@@ -38,6 +39,7 @@ class VendaController extends Controller
 
         $request["created_at"] = date("Y-m-d H:i:s",strtotime($request["created_at"]));
         
+        // var_dump($request);exit;
         $venda = Venda::create(['valor_venda' => $request["valor_venda"],'desconto' => $request["desconto"],'porcentagem' => $request["porcentagem"],'online' => $request["online"],
             'fk_cliente' => $request["fk_cliente"],'created_at' => $request["created_at"]]);
 
