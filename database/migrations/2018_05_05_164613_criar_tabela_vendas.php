@@ -15,9 +15,9 @@ class CriarTabelaVendas extends Migration
     {
         Schema::create('vendas', function (Blueprint $table) {
             $table->increments('id_venda');
-            $table->integer('valor_venda'); 
-            $table->integer('desconto'); 
-            $table->integer('porcentagem'); 
+            $table->double('valor_venda', 8, 2);
+            $table->double('desconto', 8, 2); 
+            $table->double('porcentagem', 8, 2); 
             $table->boolean('online'); 
             $table->integer('fk_cliente')->unsigned();
             $table->foreign('fk_cliente')->references('id_clientes')->on('clientes');
