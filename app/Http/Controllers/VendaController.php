@@ -14,14 +14,11 @@ use App\Http\Requests\VendaRequest;
 class VendaController extends Controller
 {
     public function listarVenda(){
-        $vendas = Venda::all();
 
-        $vendas = Venda
-        ::join('clientes', 'clientes.id_clientes', '=', 'vendas.fk_cliente')
-        ->join('saidas', 'saidas.fk_venda', '=', 'vendas.id_venda')
-        ->select()
-        ->getQuery('vendas.id_vendas','vendas.valor_venda','vendas.desconto','vendas.porcentagem','vendas.online','saidas.created_at','clientes.nome') // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
-        ->get();
+        $vendas = DB::select( DB::raw("SELECT v.id_venda,v.valor_venda,v.desconto,
+                                       v.porcentagem,v.online,v.created_at,c.nome
+                                       FROM vendas v
+                                       LEFT JOIN clientes c ON c.id_clientes = v.fk_cliente") );
 
     	return view('venda.listagem')->with(['vendas' => $vendas]);
     }
