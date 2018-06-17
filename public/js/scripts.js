@@ -33,6 +33,17 @@ $(document).ready(function(){
 	    }
 	} );
 
+	$('#listagemVendas').dataTable( {
+		"language": {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
+        },
+        columnDefs: [
+       		{ type: 'formatted-num', targets: 5 }
+     	],
+     	"order": [[ 5, "desc" ]],
+     	stateSave: true
+    } );
+
 	$('#listagemProdutos').dataTable( {
 		"language": {
             "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
@@ -53,7 +64,9 @@ $(document).ready(function(){
      	],
      	"order": [[ 4, "desc" ]],
      	stateSave: true
-    } );
+    } );   
+
+
 
     $("#categoria").select2(); 
     $("#nomeClientes").select2(); 

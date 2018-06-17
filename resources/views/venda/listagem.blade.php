@@ -11,7 +11,7 @@
     </div>
   @endif
 
-  <table id="listagem" class="table table-bordered">
+  <table id="listagemVendas" class="table table-bordered">
     <thead>
       <tr>
         <th>#</th>
