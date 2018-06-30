@@ -19,6 +19,7 @@ class CriarTabelaProdutos extends Migration
             $table->double('valor', 8, 2); 
             $table->integer('fk_categoria')->unsigned();
             $table->foreign('fk_categoria')->references('id_categoria')->on('categorias');
+            $table->boolean('destaque');
             $table->timestamps();
         });
     }

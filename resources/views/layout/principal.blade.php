@@ -30,15 +30,16 @@
                 <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown">Menus
                 <span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                    <li class="active"><a href="{{action('ProdutoController@listar')}}">Listar Produtos</a></li>
-                    <li><a href="{{action('CategoriaController@listar')}}">Listar Categorias</a></li>
-                    <li><a href="{{action('EntradaController@listarEntrada')}}">Listar Entradas de Produtos</a></li>
-                    <li><a href="{{action('VendaController@listarVenda')}}">Listar Vendas</a></li>
-                    <li><a href="{{action('ClienteController@novo')}}">Cadastrar Clientes</a></li>
-                    <li><a href="{{action('ClienteController@listar')}}">Listar Clientes</a></li>
-                    <li><a href="{{action('SaidaController@listarSaida')}}">Listar Saídas de Produtos</a></li>
-                    <li><a href="{{action('RelatorioController@novo')}}">Listar Relatórios</a></li>
-                    <li><a href="{{action('FornecedorController@listar')}}">Listar Fornecedores</a></li>
+                    <li class="active"><a href="{{action('ProdutoController@listar') }}">Listar Produtos</a></li>
+                    <li><a href="{{ action('CategoriaController@listar') }}">Listar Categorias</a></li>
+                    <li><a href="{{ route("listar destaque")  }}">Listar Destaques</a></li>
+                    <li><a href="{{ action('EntradaController@listarEntrada') }}">Listar Entradas de Produtos</a></li>
+                    <li><a href="{{ action('VendaController@listarVenda') }}">Listar Vendas</a></li>
+                    <li><a href="{{ action('ClienteController@novo') }}">Cadastrar Clientes</a></li>
+                    <li><a href="{{ action('ClienteController@listar') }}">Listar Clientes</a></li>
+                    <li><a href="{{ action('SaidaController@listarSaida') }}">Listar Saídas de Produtos</a></li>
+                    <li><a href="{{ action('RelatorioController@novo') }}">Listar Relatórios</a></li>
+                    <li><a href="{{ action('FornecedorController@listar') }}">Listar Fornecedores</a></li>
                     <li><a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Sair</a>
                           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                               {{ csrf_field() }}
