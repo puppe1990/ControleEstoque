@@ -46,7 +46,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/LancarEntrada/adiciona','EntradaController@adiciona');
 	Route::post('/LancarEntrada/edita/{id_entrada}','EntradaController@edita');
 
-
 	//Saída
 	Route::get('/ListarSaida','SaidaController@listarSaida');
 	Route::get('/ListarSaida/remove/{id_saida}','SaidaController@remove');
@@ -85,6 +84,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/CadastrarVenda','VendaController@novo');
 	Route::post('/CadastrarVenda/adiciona','VendaController@adiciona');
 	Route::post('/CadastrarVenda/edita/{id_venda}','VendaController@edita');
+
+	//Categorias
+	Route::get('/ListarDestaque','DestaqueController@listar')->name('listar destaque');
 
 });
 

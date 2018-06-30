@@ -55,9 +55,17 @@
         <div class="col-md-4">
             <select id="categoria" name="fk_categoria" value="{{ old('fk_categoria') }}" class="form-control js-example-basic-multiple-limit">
                 @foreach($categorias as $c)
-                    <option value="{{ $c->id_categoria}}">{{ $c->nome}}</option>
+                    <option value="{{ $c->id_categoria }}">{{ $c->nome }}</option>
                 @endforeach
             </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="destaque">Destaque</label>  
+        <div class="col-md-3">
+            <input name="destaque" type="hidden" value="0">
+            <input name="destaque" id="destaque" type="checkbox" value="1">
         </div>
     </div>
 

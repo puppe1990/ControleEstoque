@@ -47,6 +47,13 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="destaque">Destaque</label>  
+        <div class="col-md-3">
+            <input name="destaque" type="hidden" value="0">
+            {!! $p->destaque == 1 ? '<input name="destaque" id="destaque" type="checkbox" value="1" checked>': '<input name="destaque" id="destaque" type="checkbox" value="1">' !!}
+        </div>
+    </div>
     <input type="hidden" name="primaryImage">
 
     <div class="form-group">
@@ -55,6 +62,7 @@
             <input type='file' id="primaryImage" name="primaryImage" accept="image/*" />
         </div>
     </div>
+
 
     <div class="form-group">
         <label class="col-md-4 control-label" for="categoria">Foto Atual</label>
