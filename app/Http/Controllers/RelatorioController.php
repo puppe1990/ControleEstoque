@@ -63,16 +63,13 @@ class RelatorioController extends Controller
 				$relatorios = Venda
 		        ::select(DB::raw('sum(vendas.valor_venda) as valor'),DB::raw('sum(vendas.online) as quantidade'))
         		->whereBetween('vendas.created_at',array($request["inicio"],$request["fim"]))
-		        // ->groupBy('categorias.nome')
+        		->where('online', '=', 1)
 		        ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
-		        // ->orderBy('contador','DESC')
 		        ->get();
 		        $_REQUEST["id_relatorio"] = $request["id_relatorio"];
 				break;
 
 
-
-			
 			default:
 				echo "Erro Fera!";
 				break;
@@ -81,6 +78,5 @@ class RelatorioController extends Controller
     	return view('relatorio.formulario')->with(['relatorios' => $relatorios,'_REQUEST' => $_REQUEST]);
         exit;
 		
-		// return view('relatorio.formulario');
 	}
 }

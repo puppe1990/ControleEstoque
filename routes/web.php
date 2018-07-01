@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/LancarSaida/edita/{id_saida}','SaidaController@edita');
 
 	//Relatórios
-	Route::get('/ListarRelatorio','RelatorioController@novo');
+	Route::get('/ListarRelatorio','RelatorioController@novo')->name('Listar Relatorios');
 	Route::post('/ListarRelatorio/mostrar/','RelatorioController@mostra');
 
 	//Clientes
