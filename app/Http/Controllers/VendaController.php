@@ -15,8 +15,8 @@ class VendaController extends Controller
 {
     public function listarVenda(){
 
-        $vendas = DB::select( DB::raw("SELECT v.id_venda,v.valor_venda,v.desconto,
-                                       v.porcentagem,v.online,v.created_at,c.nome
+        $vendas = DB::select( DB::raw("SELECT v.id_venda,v.valor_venda,v.desconto,v.divulgacao,
+                                              v.porcentagem,v.online,v.created_at,c.nome
                                        FROM vendas v
                                        LEFT JOIN clientes c ON c.id_clientes = v.fk_cliente") );
 
@@ -35,9 +35,8 @@ class VendaController extends Controller
         $tamanho = count($request["saida"]["quantidade"]);
 
         $request["created_at"] = date("Y-m-d H:i:s",strtotime($request["created_at"]));
-        
-        // var_dump($request);exit;
-        $venda = Venda::create(['valor_venda' => $request["valor_venda"],'desconto' => $request["desconto"],'porcentagem' => $request["porcentagem"],'online' => $request["online"],
+
+        $venda = Venda::create(['valor_venda' => $request["valor_venda"],'desconto' => $request["desconto"],'porcentagem' => $request["porcentagem"],'online' => $request["online"],'divulgacao' => $request["divulgacao"],
             'fk_cliente' => $request["fk_cliente"],'created_at' => $request["created_at"]]);
 
         $insertedId = $venda->id_venda;

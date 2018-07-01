@@ -100,15 +100,20 @@
                 <input name="created_at" id="datetime" value="{{ date('Y-m-d\TH:i:s', strtotime($v->created_at)) }}" type="datetime-local" placeholder="Insira um valor" class="form-control input-md" required>
             </div>
         </div>
-
         <div class="form-group">
-            <label class="col-md-4 control-label" for="quantidade">On-line</label>  
+            <label class="col-md-4 control-label" for="online">On-line</label>  
             <div class="col-md-3">
                 <input name="online" type="hidden" value="0">
                 {!! $v->online == 1 ? '<input name="online" id="online" type="checkbox" value="1" checked>': '<input name="online" id="online" type="checkbox" value="1">' !!}
             </div>
         </div>
-
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="divulgacao">Divulgação</label>  
+            <div class="col-md-3">
+                <input name="online" type="hidden" value="0">
+                {!! $v->divulgacao == 1 ? '<input name="divulgacao" id="divulgacao" type="checkbox" value="1" checked>': '<input name="divulgacao" id="divulgacao" type="checkbox" value="1">' !!}
+            </div>
+        </div>
         <div class="form-group">
             <label class="col-md-4 control-label" for="desconto">Total</label>  
             <div class="col-md-3">

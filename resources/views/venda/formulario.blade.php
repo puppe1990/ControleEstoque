@@ -69,7 +69,6 @@
                 <input name="created_at" id="datetime" value="{{ old('created_at') }}" type="datetime-local" placeholder="Insira um valor" class="form-control input-md" required>
             </div>
         </div>
-
         <div class="form-group">
             <label class="col-md-4 control-label" for="quantidade">On-line</label>  
             <div class="col-md-3">
@@ -77,7 +76,13 @@
                 <input name="online" id="online" type="checkbox" value="1">
             </div>
         </div>
-
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="divulgacao">Divulgação</label>  
+            <div class="col-md-3">
+                <input name="divulgacao" type="hidden" value="0">
+                <input name="divulgacao" id="divulgacao" type="checkbox" value="1">
+            </div>
+        </div>
         <div class="form-group">
             <label class="col-md-4 control-label" for="desconto">Total</label>  
             <div class="col-md-3">

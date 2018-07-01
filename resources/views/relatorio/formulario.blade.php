@@ -18,6 +18,7 @@
                       <option value="3">Categorias Mais Entradas</option>
                       <option value="4">Quantidade de vendas on-line/Ticket Médio por data</option>
                       <option value="5">Valor Total/Ticket Médio por data</option>
+                      <option value="6">Gasto com Divulgação</option>
               </select>
             </div>
         </div>
@@ -107,7 +108,7 @@
                 <table id="listagem" class="table table-bordered">
                     <thead>
                       <tr>
-                        <th>Valor</th>
+                        <th>Valor Total</th>
                         <th>Quantidade de vendas</th>
                         <th>Ticket Médio On-line</th>
                       </tr>
@@ -127,8 +128,28 @@
             <table id="listagem" class="table table-bordered">
                 <thead>
                   <tr>
-                    <th>Valor</th>
+                    <th>Valor Total</th>
                     <th>Quantidade de vendas</th>
+                    <th>Ticket Médio Geral</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($relatorios as $r)
+                    <tr>
+                      <td>R${{ $r->valor }}</td>
+                      <td>{{ $r->quantidade }}</td>
+                      <td>R${{ $r->ticket_medio }}</td>
+                    </tr>
+                  @endforeach
+                </tbody>
+            </table>
+          @break
+          @case(6)
+            <table id="listagem" class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Valor Total</th>
+                    <th>Quantidade de divulgações</th>
                     <th>Ticket Médio Geral</th>
                   </tr>
                 </thead>

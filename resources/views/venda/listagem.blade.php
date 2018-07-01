@@ -20,6 +20,7 @@
         <th>Desconto R$</th>
         <th>Desconto %</th>
         <th>On-Line</th>
+        <th>Divulgação</th>
         <th>Data</th>
         <th>Horário</th>
         <th>Editar Venda</th>
@@ -35,6 +36,7 @@
           <td>R$ {{ $v->desconto }}</td>
           <td>{{ $v->porcentagem }}%</td>
           <td>{{ $v->online == 1 ? 'Sim' : 'Não' }}</td>
+          <td>{{ $v->divulgacao == 1 ? 'Sim' : 'Não' }}</td>
           <td>{{ date('d/m/Y', strtotime($v->created_at)) }}</td>
           <td>{{ date('H:i:s', strtotime($v->created_at)) }}</td>
           <td><a href="/ListarVenda/mostrar/{{ $v->id_venda }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
