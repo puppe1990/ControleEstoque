@@ -16,7 +16,7 @@
                       <option value="1">Produtos Mais Vendidos</option>
                       <option value="2">Categorias Mais Vendidas</option>
                       <option value="3">Categorias Mais Entradas</option>
-                      <option value="4">Quantidade de vendas on-line</option>
+                      <option value="4">Quantidade de vendas on-line/Ticket Médio por data</option>
                       <option value="5">Valor Total/Ticket Médio por data</option>
               </select>
             </div>
@@ -109,6 +109,7 @@
                       <tr>
                         <th>Valor</th>
                         <th>Quantidade de vendas</th>
+                        <th>Ticket Médio On-line</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -116,6 +117,7 @@
                         <tr>
                           <td>R${{ $r->valor }}</td>
                           <td>{{ $r->quantidade }}</td>
+                          <td>R${{ $r->ticket_medio }}</td>
                         </tr>
                       @endforeach
                     </tbody>
@@ -127,7 +129,7 @@
                   <tr>
                     <th>Valor</th>
                     <th>Quantidade de vendas</th>
-                    <th>Ticket Médio</th>
+                    <th>Ticket Médio Geral</th>
                   </tr>
                 </thead>
                 <tbody>

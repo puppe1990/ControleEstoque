@@ -61,7 +61,7 @@ class RelatorioController extends Controller
 
 			case '4':
 				$relatorios = Venda
-		        ::select(DB::raw('sum(vendas.valor_venda) as valor'),DB::raw('count(id_venda) as quantidade'))
+		        ::select(DB::raw('sum(vendas.valor_venda) as valor'),DB::raw('count(id_venda) as quantidade'),DB::raw('sum(vendas.valor_venda)/count(vendas.id_venda) as ticket_medio'))
         		->whereBetween('vendas.created_at',array($request["inicio"],$request["fim"]))
         		->where('online', '=', 1)
 		        ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
