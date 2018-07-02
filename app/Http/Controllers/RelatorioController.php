@@ -90,6 +90,21 @@ class RelatorioController extends Controller
 		        $_REQUEST["id_relatorio"] = $request["id_relatorio"];
 				break;
 
+			case '7':
+				$relatorios = Venda
+		        ::join('clientes', 'clientes.id_clientes', '=', 'vendas.fk_cliente')
+		        ->select('clientes.nome',DB::raw('sum(vendas.valor_venda) as valor'))
+        		->whereBetween('vendas.created_at',array($request["inicio"],$request["fim"]))
+        		->where('divulgacao', '=', 0)
+        		->whereNotIn('id_clientes', [1,106,136,184])
+		        ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
+		        ->groupBy('clientes.nome')
+		        ->orderBy('valor','DESC')
+		        ->get();
+
+		        $_REQUEST["id_relatorio"] = $request["id_relatorio"];
+				break;
+
 
 			default:
 				echo "Erro Fera!";

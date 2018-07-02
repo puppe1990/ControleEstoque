@@ -19,6 +19,7 @@
                       <option value="4">Quantidade de vendas on-line/Ticket Médio por data</option>
                       <option value="5">Valor Total/Ticket Médio por data</option>
                       <option value="6">Gasto com Divulgação</option>
+                      <option value="7">Clientes que mais compraram</option>
               </select>
             </div>
         </div>
@@ -159,6 +160,24 @@
                       <td>R${{ $r->valor }}</td>
                       <td>{{ $r->quantidade }}</td>
                       <td>R${{ $r->ticket_medio }}</td>
+                    </tr>
+                  @endforeach
+                </tbody>
+            </table>
+          @break
+          @case(7)
+            <table id="listagem" class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Nome Cliente</th>
+                    <th>Valor Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($relatorios as $r)
+                    <tr>
+                      <td>{{ $r->nome }}</td>
+                      <td>R${{ $r->valor }}</td>
                     </tr>
                   @endforeach
                 </tbody>
