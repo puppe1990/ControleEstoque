@@ -93,12 +93,12 @@ class RelatorioController extends Controller
 			case '7':
 				$relatorios = Venda
 		        ::join('clientes', 'clientes.id_clientes', '=', 'vendas.fk_cliente')
-		        ->select('clientes.nome',DB::raw('sum(vendas.valor_venda) as valor'))
+		        ->select('clientes.id_clientes','clientes.nome','clientes.email','clientes.celular',DB::raw('sum(vendas.valor_venda) as valor'),DB::raw('count(clientes.id_clientes) as num_vendas'))
         		->whereBetween('vendas.created_at',array($request["inicio"],$request["fim"]))
         		->where('divulgacao', '=', 0)
-        		->whereNotIn('id_clientes', [1,106,136,184])
+        		->whereNotIn('id_clientes', [1,106,136,184,222,196,220,221])
 		        ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
-		        ->groupBy('clientes.nome')
+		        ->groupBy('clientes.nome','clientes.email','clientes.celular','clientes.id_clientes')
 		        ->orderBy('valor','DESC')
 		        ->get();
 

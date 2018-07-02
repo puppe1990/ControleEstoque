@@ -169,14 +169,22 @@
             <table id="listagem" class="table table-bordered">
                 <thead>
                   <tr>
+                    <th>ID</th>
                     <th>Nome Cliente</th>
+                    <th>Celular</th>
+                    <th>E-Mail</th>
+                    <th>Nº de Vendas</th>
                     <th>Valor Total</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach($relatorios as $r)
                     <tr>
+                      <td>{{ $r->id_clientes }}</td>
                       <td>{{ $r->nome }}</td>
+                      <td>{{ $r->celular }}</td>
+                      <td>{{ $r->email }}</td>
+                      <td>{{ $r->num_vendas }}</td>
                       <td>R${{ $r->valor }}</td>
                     </tr>
                   @endforeach
