@@ -105,6 +105,15 @@ class RelatorioController extends Controller
 		        $_REQUEST["id_relatorio"] = $request["id_relatorio"];
 				break;
 
+			case '8':
+
+       			$relatorios = DB::select( DB::raw("SELECT (SELECT SUM(p.valor*e.quantidade) valor_entrada FROM produtos p
+															INNER JOIN entradas e ON e.fk_produto = p.id_produto) - (SELECT sum(p.valor*s.quantidade) valor_entrada FROM produtos p
+															INNER JOIN saidas s ON s.fk_produto = p.id_produto) AS valor FROM DUAL") );
+
+		        $_REQUEST["id_relatorio"] = $request["id_relatorio"];
+				break;
+
 
 			default:
 				echo "Erro Fera!";

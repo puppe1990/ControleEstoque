@@ -20,6 +20,7 @@
                       <option value="5">Valor Total/Ticket Médio por data</option>
                       <option value="6">Gasto com Divulgação</option>
                       <option value="7">Clientes que mais compraram</option>
+                      <option value="8">Valor Total em Roupas</option>
               </select>
             </div>
         </div>
@@ -186,6 +187,22 @@
                       <td>{{ $r->email }}</td>
                       <td>{{ $r->num_vendas }}</td>
                       <td>R${{ $r->valor }}</td>
+                    </tr>
+                  @endforeach
+                </tbody>
+            </table>
+          @break         
+          @case(8)
+            <table id="listagem" class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th class="text-center">Valor Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($relatorios as $r)
+                    <tr>
+                      <td class="text-center">R${{ $r->valor }}</td>
                     </tr>
                   @endforeach
                 </tbody>
