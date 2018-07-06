@@ -25,9 +25,16 @@
 
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="valor">Valor</label>  
+      <label class="col-md-4 control-label" for="valor">Valor Venda</label>  
         <div class="col-md-4">
-            <input id="valor" name="valor" type="text" value="{{$p->valor}}" placeholder="Insira um valor" class="form-control input-md" required>
+            <input id="valor" name="valor" type="text" value="{{$p->valor}}" placeholder="Insira o valor do produto" class="form-control input-md" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="valor">Valor Compra</label>  
+        <div class="col-md-4">
+            <input id="valor_compra" name="valor_compra" value="{{ $p->valor_compra }}" type="text" placeholder="Insira o valor de compra" class="form-control input-md" required>
         </div>
     </div>
 
