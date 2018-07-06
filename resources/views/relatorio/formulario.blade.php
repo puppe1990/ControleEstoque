@@ -196,13 +196,15 @@
             <table id="listagem" class="table table-bordered">
                 <thead>
                   <tr>
-                    <th class="text-center">Valor Total</th>
+                    <th class="text-center">Valor Venda</th>
+                    <th class="text-center">Valor Compra</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach($relatorios as $r)
                     <tr>
-                      <td class="text-center">R${{ $r->valor }}</td>
+                      <td class="text-center">R${{ $r->valor_venda }}</td>
+                      <td class="text-center">R${{ $r->valor_compra }}</td>
                     </tr>
                   @endforeach
                 </tbody>

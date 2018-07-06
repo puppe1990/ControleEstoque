@@ -107,9 +107,13 @@ class RelatorioController extends Controller
 
 			case '8':
 
-       			$relatorios = DB::select( DB::raw("SELECT (SELECT SUM(p.valor*e.quantidade) valor_entrada FROM produtos p
-															INNER JOIN entradas e ON e.fk_produto = p.id_produto) - (SELECT sum(p.valor*s.quantidade) valor_entrada FROM produtos p
-															INNER JOIN saidas s ON s.fk_produto = p.id_produto) AS valor FROM DUAL") );
+       			$relatorios = DB::select( DB::raw("select (select sum(p.valor_compra*e.quantidade) valor_entrada from produtos p
+													inner join entradas e on e.fk_produto = p.id_produto) - (select sum(p.valor_compra*s.quantidade) valor_entrada from produtos p
+													inner join saidas s on s.fk_produto = p.id_produto) as valor_compra,
+													(select sum(p.valor*e.quantidade) valor_entrada from produtos p
+													inner join entradas e on e.fk_produto = p.id_produto) - (select sum(p.valor*s.quantidade) valor_entrada from produtos p
+													inner join saidas s on s.fk_produto = p.id_produto) as valor_venda 
+													from dual;") );
 
 		        $_REQUEST["id_relatorio"] = $request["id_relatorio"];
 				break;
