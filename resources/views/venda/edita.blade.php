@@ -101,7 +101,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-4 control-label" for="online">On-line</label>  
+            <label class="col-md-4 control-label" for="online">On-line/MotoBoy</label>  
             <div class="col-md-3">
                 <input name="online" type="hidden" value="0">
                 {!! $v->online == 1 ? '<input name="online" id="online" type="checkbox" value="1" checked>': '<input name="online" id="online" type="checkbox" value="1">' !!}
