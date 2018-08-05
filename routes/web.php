@@ -12,7 +12,7 @@
 */
 Route::group(['middleware' => 'auth'], function () {
 
-	Route::get('/home', 'ProdutoController@listar');
+	Route::get('/home', 'ModuloController@listar')->name('Pagina inicial');
 
 	//Produtos
 	Route::group(['prefix' => 'Produtos'], function(){   

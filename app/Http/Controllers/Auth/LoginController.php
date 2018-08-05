@@ -44,7 +44,7 @@ class LoginController extends Controller
         $credentials = array('email' => $request->email, 'password' => $request->password);
 
         if (Auth::attempt($credentials))
-            return redirect()->action('ProdutoController@listar');
+            return redirect()->action('ModuloController@listar');
         else
             return back()->withErrors(array('message' => 'email e/ou senha incorreto'));
 

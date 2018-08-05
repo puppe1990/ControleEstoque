@@ -30,7 +30,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{{ route('Listar Produtos') }}">Purchase Store</a>
+                <a class="navbar-brand" href="{{ route('Pagina inicial') }}">Purchase Store</a>
               </div>
               <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -118,6 +118,7 @@
         <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.10.16/sorting/date-uk.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="http://momentjs.com/downloads/moment.min.js"></script>
         <script type="text/javascript" src="/js/scripts.js"></script>
     </body>
 </html>
