@@ -28,15 +28,17 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="quantidade">Data Início</label>  
             <div class="col-md-4">
-                <input name="inicio" id="datetime" value="{{ old('inicio') }}" type="date" placeholder="Insira um valor" class="form-control input-md" required>
+                <input name="inicio" id="datetimeinital" value="{{ old('inicio') }}" type="date" placeholder="Insira um valor" class="form-control input-md" required>
             </div>
+            <div onclick="inserirPrimeiroDiaMes()" class="btn btn-success">INCLUIR PRIMEIRO DIA DO MÊS ATUAL</div>
         </div>
 
         <div class="form-group">
-            <label class="col-md-4 control-label" for="quantidade">Data Final</label>  
+          <label class="col-md-4 control-label" for="quantidade">Data Final</label>  
             <div class="col-md-4">
                 <input name="fim" id="datetime" value="{{ old('fim') }}" type="date" placeholder="Insira um valor" class="form-control input-md" required>
             </div>
+          <div onclick="inserirDataAtualRelatorio()" class="btn btn-success">INCLUIR DATA ATUAL</div>
         </div>
         
 

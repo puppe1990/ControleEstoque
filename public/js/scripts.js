@@ -243,6 +243,7 @@ function atualizaTotal(param = 0) {
 		let subtotal = document.querySelectorAll(".subtotal")[i].value;
 
 		total.value = Number(total.value) + Number(subtotal);
+		atualizaTotalLiquido();
 	}
 
 }
@@ -291,7 +292,11 @@ function valorTotal(){
 	let $ = document.querySelector.bind(document);
 	let valorVenda = $("#valorVenda");
 	let total = $("#total");
-	valorVenda.value = total.value;	        
+	valorVenda.value = total.value;	
+
+	let valorVendaLiquido = $("#valorVendaLiquido");
+	let totalLiquido = $("#totalLiquido");
+	valorVendaLiquido.value = totalLiquido.value;	        
 }
 
 function deletaProduto(valor){
@@ -301,6 +306,162 @@ function deletaProduto(valor){
 	$("#desconto").value = 0;
 	$("#descontoPorcent").value = 0;	
 	atualizaTotal();
+	atualizaTotalLiquido();
 }
+
+
+function atualizaTotalLiquido(){
+	let $ = document.querySelector.bind(document);
+	let formaVenda = $("#formaVenda").value;
+	let modoPagamento = $("#modoPagamento").value;
+	let parcela = $("#parcela").value;
+	let tipoParcela = $("#tipoParcela").value;
+	const TAXA_FIXA = 0.4;
+
+	if(formaVenda == "1" && modoPagamento == "1" && parcela == 1) {
+		let totalLiquido = $("#totalLiquido");
+		let total = $("#total").value;
+		totalLiquido.value = total;
+	}else if(formaVenda == "2" && modoPagamento == "2" && (Number(parcela) == 2||3||4||5) && tipoParcela == "comprador"){
+		let totalLiquido = $("#totalLiquido");
+		let total = $("#total").value;
+		totalLiquido.value = (total - (total * 5.59 /100)).toFixed(2);
+	}else if(formaVenda == "2" && modoPagamento == "3" && parcela == 1){
+		let totalLiquido = $("#totalLiquido");
+		let total = $("#total").value;
+		totalLiquido.value = (total - (total * 2.39 /100)).toFixed(2);
+	}else if(formaVenda == "2" && modoPagamento == "2" && tipoParcela == "vendedor"){
+		console.log("liquido");
+		let totalLiquido = $("#totalLiquido");
+		let total = $("#total").value;
+		if(Number(parcela) == 2){
+			totalLiquido.value = (total - (total * 4.99 /100)).toFixed(2);
+		}else if(Number(parcela) == 3){
+			totalLiquido.value = (total - (total * (5.59 + 4.32) /100)).toFixed(2);
+		}else if(Number(parcela) == 4){
+			totalLiquido.value = (total - (total * (5.59 + 5.70) /100)).toFixed(2);
+		}else if(Number(parcela) == 5){
+			totalLiquido.value = (total - (total * (5.59 + 7.05) /100)).toFixed(2);
+		}else{
+			console.log("FALTA DADOS");
+		}
+	}else if(formaVenda == "3" && (modoPagamento == "2"||"4") && (Number(parcela) == 2||3||4||5) && (tipoParcela == "comprador"||"vendedor")){
+		let totalLiquido = $("#totalLiquido");
+		let total = $("#total").value;
+		totalLiquido.value = (total - (total * 4.99 /100) - TAXA_FIXA).toFixed(2);
+	}else{
+		console.log("FALTA DADOS");
+	}
+}
+
+function verificaFormaVenda(){
+	let formaVenda = document.querySelector("#formaVenda").value;	
+	let $ = document.querySelector.bind(document);
+	$("#modoPagamento").disabled = false;
+	atualizaTotalLiquido();
+
+	if(formaVenda == "2"){
+		let modoPagamento = document.querySelectorAll("#modoPagamento");
+	    modoPagamento[0][0].disabled = false;
+	    modoPagamento[0][1].disabled = true;
+	    modoPagamento[0][2].disabled = false;
+	    modoPagamento[0][3].disabled = false;
+	    modoPagamento[0][4].disabled = true;
+	}else if(formaVenda == "1"){
+		let modoPagamento = document.querySelectorAll("#modoPagamento");
+	    modoPagamento[0][0].disabled = false;
+	    modoPagamento[0][1].disabled = false;
+	    modoPagamento[0][2].disabled = true;
+	    modoPagamento[0][3].disabled = true;
+	    modoPagamento[0][4].disabled = true;
+	}else if(formaVenda == "3"){
+	    modoPagamento[0][0].disabled = false;
+	    modoPagamento[0][1].disabled = true;
+	    modoPagamento[0][2].disabled = false;
+	    modoPagamento[0][3].disabled = true;
+	    modoPagamento[0][4].disabled = false;
+	}else{
+		console.log("FALTA DADOS");
+	}
+}
+
+function verificaModoPagamento(){
+	let $ = document.querySelector.bind(document);
+	let modoPagamento = $("#modoPagamento").value;	
+	let parcela = document.querySelectorAll("#parcela");
+	$("#parcela").disabled = false;
+	atualizaTotalLiquido();
+
+	if(modoPagamento == "1"){
+	    parcela[0][0].disabled = false;
+	    parcela[0][1].disabled = false;
+	    parcela[0][2].disabled = true;
+	    parcela[0][3].disabled = true;
+	    parcela[0][4].disabled = true;
+	    parcela[0][5].disabled = true;
+	}else if(modoPagamento == "3"){
+	    parcela[0][0].disabled = false;
+	    parcela[0][1].disabled = false;
+	    parcela[0][2].disabled = true;
+	    parcela[0][3].disabled = true;
+	    parcela[0][4].disabled = true;
+	    parcela[0][5].disabled = true;
+	}else if(modoPagamento == "2"){
+	    parcela[0][0].disabled = false;
+	    parcela[0][1].disabled = true;
+	    parcela[0][2].disabled = false;
+	    parcela[0][3].disabled = false;
+	    parcela[0][4].disabled = false;
+	    parcela[0][5].disabled = false;
+	}else if(modoPagamento == "4"){
+	    parcela[0][0].disabled = false;
+	    parcela[0][1].disabled = true;
+	    parcela[0][2].disabled = false;
+	    parcela[0][3].disabled = false;
+	    parcela[0][4].disabled = false;
+	    parcela[0][5].disabled = false;
+	}else{
+		console.log("FALTA DADOS");
+	}
+
+}
+
+function verificaParcela(){
+	let $ = document.querySelector.bind(document);
+	let parcela = $("#parcela").value;	
+	let tipoParcela = document.querySelectorAll("#tipoParcela");
+	$("#tipoParcela").disabled = false;
+	atualizaTotalLiquido();
+	
+	if(Number(parcela) == 1){
+	    tipoParcela[0][0].disabled = false;
+	    tipoParcela[0][1].disabled = false;
+	    tipoParcela[0][2].disabled = true;
+	    tipoParcela[0][3].disabled = true;
+	}else{
+	    tipoParcela[0][0].disabled = false;
+		tipoParcela[0][1].disabled = true;
+	    tipoParcela[0][2].disabled = false;
+	    tipoParcela[0][3].disabled = false;
+	}
+
+}
+
+function verificaTipoParcela(){
+	atualizaTotalLiquido();
+}
+
+function inserirHoraAtual(){
+	return document.getElementById("datetime").value = moment().format("YYYY-MM-DDTHH:mm");  
+}
+
+function inserirDataAtualRelatorio(){
+	return document.getElementById("datetime").value = moment().format("YYYY-MM-DD");  
+}
+
+function inserirPrimeiroDiaMes(){
+	return document.getElementById("datetimeinital").value = moment().format("YYYY-MM-01");  
+}
+
 
 atualizaTotal();
