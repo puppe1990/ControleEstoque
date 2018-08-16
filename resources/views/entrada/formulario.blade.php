@@ -39,6 +39,7 @@
         <div class="col-md-4">
             <input name="created_at" value="{{ old('created_at') }}" id="datetime" type="datetime-local" placeholder="Insira um valor" class="form-control input-md" required>
         </div>
+        <div onclick="inserirHoraAtual()" class="btn btn-success">INCLUIR HORÁRIO ATUAL</div>
     </div>
 
     <div class="form-group">
