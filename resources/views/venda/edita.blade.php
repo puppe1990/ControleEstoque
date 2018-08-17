@@ -99,6 +99,7 @@
             <div class="col-md-3">
                 <input name="created_at" id="datetime" value="{{ date('Y-m-d\TH:i:s', strtotime($v->created_at)) }}" type="datetime-local" placeholder="Insira um valor" class="form-control input-md" required>
             </div>
+            <div onclick="inserirHoraAtual()" class="btn btn-success">INCLUIR HORÁRIO ATUAL</div>
         </div>
         <div class="form-group">
             <label class="col-md-4 control-label" for="online">On-line/MotoBoy</label>  
