@@ -38,7 +38,7 @@
           <td id="imagem">{{ $p->imagens ? "<img width=\"150\" src=\"$p->imagens\">" : 'Sem Foto' }}</td>
           <td>{{ $p->descricao }}</td>
           <td>{{ $p->nome }}</td>
-          <td>R${{ $p->valor }}</td>
+          <td>R${{ number_format($p->valor, 2, ',', '.') }}</td>
           <td>{{ $p->quantidadeEntrada ? $p->quantidadeEntrada : 0  }}</td>
           <td>{{ $p->quantidadeSaida ? $p->quantidadeSaida : 0 }}</td>
           <td>{{ $saldo = $p->quantidadeEntrada - $p->quantidadeSaida}}</td>

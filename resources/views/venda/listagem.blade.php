@@ -32,8 +32,8 @@
         <tr>
           <td>{{ $v->id_venda }}</td>
           <td>{{ $v->nome }}</td>
-          <td>R$ {{ $v->valor_venda }}</td>
-          <td>R$ {{ $v->desconto }}</td>
+          <td>R${{ number_format($v->valor_venda, 2, ',', '.') }}</td>
+          <td>R${{ number_format($v->desconto, 2, ',', '.') }}</td>
           <td>{{ $v->porcentagem }}%</td>
           <td>{{ $v->online == 1 ? 'Sim' : 'Não' }}</td>
           <td>{{ $v->divulgacao == 1 ? 'Sim' : 'Não' }}</td>
