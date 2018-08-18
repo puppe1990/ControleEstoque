@@ -9,6 +9,10 @@ use App\Venda;
 use App\Produto;
 use App\Saida;
 use App\Cliente;
+use App\FormaVenda;
+use App\ModoPagamento;
+use App\Parcela;
+use App\TipoParcelamento;
 use App\Http\Requests\VendaRequest;
 
 class VendaController extends Controller
@@ -26,7 +30,11 @@ class VendaController extends Controller
     public function novo(){
         $produtos = Produto::all();
     	$clientes = Cliente::all();
-        return view('venda.formulario')->with(['produtos' => $produtos,'clientes' => $clientes]);
+    	$formasVenda = FormaVenda::all();
+    	$modosPagamento = ModoPagamento::all();
+        $parcelas = Parcela::all();
+    	$tiposParcelamento = TipoParcelamento::all();
+        return view('venda.formulario')->with(['produtos' => $produtos,'clientes' => $clientes,'formasVenda' => $formasVenda,'modosPagamento' => $modosPagamento,'parcelas' => $parcelas, 'tiposParcelamento' => $tiposParcelamento]);
     }
 
     public function adiciona(VendaRequest $request){
@@ -37,7 +45,7 @@ class VendaController extends Controller
         $request["created_at"] = date("Y-m-d H:i:s",strtotime($request["created_at"]));
 
         $venda = Venda::create(['valor_venda' => $request["valor_venda"],'desconto' => $request["desconto"],'porcentagem' => $request["porcentagem"],'online' => $request["online"],'divulgacao' => $request["divulgacao"],
-            'fk_cliente' => $request["fk_cliente"],'created_at' => $request["created_at"]]);
+            'fk_cliente' => $request["fk_cliente"],'created_at' => $request["created_at"],'forma_venda' => $request["forma_venda"],'modo_pagamento' => $request["modo_pagamento"],'parcela' => $request["parcela"],'tipo_parcela' => $request["tipo_parcela"],'total_liquido' => $request["total_liquido"]]);
 
         $insertedId = $venda->id_venda;
 
