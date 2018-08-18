@@ -111,7 +111,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="divulgacao">Divulgação</label>  
             <div class="col-md-3">
-                <input name="online" type="hidden" value="0">
+                <input name="divulgacao" type="hidden" value="0">
                 {!! $v->divulgacao == 1 ? '<input name="divulgacao" id="divulgacao" type="checkbox" value="1" checked>': '<input name="divulgacao" id="divulgacao" type="checkbox" value="1">' !!}
             </div>
         </div>

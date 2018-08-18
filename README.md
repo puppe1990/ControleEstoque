@@ -5,5 +5,8 @@ Este Sistema Controle Estoque foi feito com o Framework Laravel 5.5, Bootstrap 3
 
 Se tiver interesse em utilizar em sua empresa mande-me um email para: matheus.puppe90@hotmail.com
 
+Inventory Control System for clothing stores. With clothes registration, categories, entry and exit control, customer and supplier registration, control and sales registration, generation of reports with filter by date. I am currently developing financial control. This Inventory Control System was made with the Laravel 5.5 Framework, Bootstrap 3, JavaScript, jQuery and MySQL Database. 
+
+If you are interested in using your company send me an email to: matheus.puppe90@hotmail.com
 
 https://www.buymeacoffee.com/puppe1990
