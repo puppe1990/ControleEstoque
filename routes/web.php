@@ -19,7 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('','ProdutoController@listar')->name('Listar Produtos');
 		Route::get('/remove/{id_produto}','ProdutoController@remove');
 		Route::get('/mostrar/{id_produto}','ProdutoController@mostra');
-
+		Route::get('/maiorProduto','ProdutoController@maiorProduto');
 	});	
 
 	Route::group(['prefix' => 'NovoProduto'], function(){   
