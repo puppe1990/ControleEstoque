@@ -97,4 +97,11 @@ class ProdutoController extends Controller
         return redirect()
                ->action('ProdutoController@listar');
     }
+
+    public function maiorProduto(){
+        return $produto = DB::select( 
+                            DB::raw("SELECT MAX(CAST(codigo_produto AS unsigned integer)) + 1 as codigo_produto 
+                                     FROM produtos;") 
+                          );
+    }
 }
