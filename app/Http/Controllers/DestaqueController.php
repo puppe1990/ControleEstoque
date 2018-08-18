@@ -23,7 +23,7 @@ class DestaqueController extends Controller
             ->where('destaque', '=', 1)
             ->groupBy('produtos.descricao','produtos.codigo_produto','produtos.valor','produtos.id_produto','categorias.nome','produtos.path_image','temp.quantidadeSaida')
             ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
-            ->orderBy('quantidadeEntrada','DESC')
+            ->orderBy('quantidadeSaida','DESC')
             ->get();
 
         $linhaTempoEntrada = Produto
