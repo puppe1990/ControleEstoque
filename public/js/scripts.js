@@ -1,5 +1,10 @@
 $(document).ready(function(){
 
+	$.ajax({url: "Produtos/maiorProduto", success: function(result){
+		let resultado = result[0].codigo_produto;
+		$("#textinputcadastro").val(resultado);
+    }});
+
 	jQuery.extend( jQuery.fn.dataTableExt.oSort, {
 	    "formatted-num-pre": function ( a ) {
 	        a = (a === "-" || a === "") ? 0 : a.replace( /[^\d\-\.]/g, "" );
@@ -45,6 +50,7 @@ $(document).ready(function(){
     } );
 
 	$('#listagemProdutos').dataTable( {
+		//'ajax': 'ProdutoController@listar',
 		"language": {
             "url": "https://cdn.datatables.net/plug-ins/1.10.12/i18n/Portuguese-Brasil.json"
         },
@@ -462,6 +468,8 @@ function inserirDataAtualRelatorio(){
 function inserirPrimeiroDiaMes(){
 	return document.getElementById("datetimeinital").value = moment().format("YYYY-MM-01");  
 }
+
+
 
 
 atualizaTotal();
