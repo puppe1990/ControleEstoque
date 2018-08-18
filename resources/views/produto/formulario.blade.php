@@ -30,7 +30,7 @@
 
         <label class="col-md-4 control-label" for="textinput">Código do Produto</label>  
         <div class="col-md-4">
-            <input id="textinput" name="codigo_produto" value="{{ old('codigo_produto') }}" type="text" placeholder="Insira um código" class="form-control input-md" required>
+            <input id="textinputcadastro" name="codigo_produto" value="{{ old('codigo_produto') }}" type="text" placeholder="Insira um código" class="form-control input-md" required>
         </div>
     </div>
 
