@@ -10,3 +10,5 @@ Inventory Control System for clothing stores. With clothes registration, categor
 If you are interested in using your company send me an email to: matheus.puppe90@hotmail.com
 
 https://www.buymeacoffee.com/puppe1990
+
+https://mattermost-br.herokuapp.com/inventory
