@@ -11,4 +11,5 @@ If you are interested in using your company send me an email to: matheus.puppe90
 
 https://www.buymeacoffee.com/puppe1990
 
-https://mattermost-br.herokuapp.com/inventory
+Invite MatterMost of the project
+https://mattermost-br.herokuapp.com/signup_user_complete/?id=6i1s6ks8jfrymd9gqpwcwc7wco
