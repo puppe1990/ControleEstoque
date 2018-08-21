@@ -37,7 +37,7 @@
                   <td>{{ date('d/m/Y', strtotime($linha->data)) }}</td>
                   <td>{{ $linha->quantidade }}</td>
                   <?php $diferenca = strtotime('today') - strtotime($linha->data) ?>
-                  <td>{{ $dias = floor($diferenca / (60 * 60 * 24)) }}</td>
+                  <td>{{ $dias = floor($diferenca / (60 * 60 * 24) + 1) }}</td>
                 @endif
               </tr>                   
             @endforeach
