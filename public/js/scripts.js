@@ -1,5 +1,11 @@
 $(document).ready(function(){
 
+	$.ajax({url: "Produtos/maiorProduto", success: function(result){
+		let resultado = result[0].codigo_produto;
+		$("#textinputcadastro").val(resultado);
+    }});
+
+
 	jQuery.extend( jQuery.fn.dataTableExt.oSort, {
 	    "formatted-num-pre": function ( a ) {
 	        a = (a === "-" || a === "") ? 0 : a.replace( /[^\d\-\.]/g, "" );
