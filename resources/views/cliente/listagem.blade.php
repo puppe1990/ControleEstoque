@@ -18,6 +18,8 @@
         <th>Nome Cliente</th>
         <th>Celular</th>
         <th>E-Mail</th>
+        <th>Data de inclusão</th>
+        <th>Horário</th>
         <th>Editar Cliente</th>
         <th>Remover Cliente</th>
       </tr>
@@ -29,6 +31,8 @@
           <td>{{ $c->nome }}</td>
           <td>{{ $c->celular }}</td>
           <td>{{ $c->email }}</td>
+          <td>{{ date('d/m/Y', strtotime($c->created_at)) }}</td>
+          <td>{{ date('H:i:s', strtotime($c->created_at)) }}</td>
           <td><a href="/ListarCliente/mostrar/{{ $c->id_clientes }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
           <td><a href="/ListarCliente/remove/{{ $c->id_clientes }}"><span class="glyphicon glyphicon-trash"></span></a></td>
         </tr>     
