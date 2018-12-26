@@ -45,7 +45,8 @@ $(document).ready(function(){
         },
         columnDefs: [
        		{ type: 'formatted-num', targets: 6 }
-     	],
+		 ],
+		responsive: true,
      	"order": [[ 6, "desc" ]],
      	stateSave: true
     } );
@@ -57,7 +58,8 @@ $(document).ready(function(){
        	columnDefs: [
 	       { type: 'formatted-num', targets: 0 }
 	    ],
-     	"order": [[ 0, "desc" ]],
+		"order": [[ 0, "desc" ]],
+		responsive: true,
      	stateSave: true
     } );
 
@@ -68,7 +70,8 @@ $(document).ready(function(){
         columnDefs: [
        		{ type: 'date-uk', targets: 4 }
      	],
-     	"order": [[ 4, "desc" ]],
+		"order": [[ 4, "desc" ]],
+		responsive: true,
      	stateSave: true
     } );   
 
