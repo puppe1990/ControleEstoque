@@ -1,5 +1,7 @@
 
-Sistema Controle Estoque para lojas de roupas. Com cadastro de roupas, categorias, lançamento de entrada e controle de saída, cadastro de clientes e fornecedores, controle e cadastro de vendas, geração de relatórios com filtro por data. <b>No momento estou desenvolvendo o controle financeiro.</b>
+# Controle de Estoque para lojas de roupas. 
+
+Com cadastro de roupas, categorias, lançamento de entrada e controle de saída, cadastro de clientes e fornecedores, controle e cadastro de vendas, geração de relatórios com filtro por data. <b>No momento estou desenvolvendo o controle financeiro.</b>
 
 Este Sistema Controle Estoque foi feito com o Framework Laravel 5.5, Bootstrap 3, JavaScript,jQuery e Banco de dados MySQL.
 
@@ -18,6 +20,3 @@ Inventory Control System for clothing stores. With clothes registration, categor
 If you are interested in using your company send me an email to: matheus.puppe90@hotmail.com or WhatsApp message: <a href="https://api.whatsapp.com/send?phone=5511995597242&text=Hello%20Matheus,%20i'm%20interested%20in%20your%20InventoryControlSystem." target="_blank">Click here to send a WhatsApp message</a>
 
 https://www.buymeacoffee.com/puppe1990
-
-Invite MatterMost of the project
-https://mattermost-br.herokuapp.com/signup_user_complete/?id=6i1s6ks8jfrymd9gqpwcwc7wco
