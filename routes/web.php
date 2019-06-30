@@ -15,14 +15,33 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/home', 'ModuloController@listar')->name('Pagina inicial');
 
 	//Produtos
-	Route::group(['prefix' => 'Produtos'], function(){   
+	Route::group(['prefix' => 'Produtos'], function(){
 		Route::get('','ProdutoController@listar')->name('Listar Produtos');
 		Route::get('/remove/{id_produto}','ProdutoController@remove');
 		Route::get('/mostrar/{id_produto}','ProdutoController@mostra');
 		Route::get('/maiorProduto','ProdutoController@maiorProduto');
 	});	
 
-	Route::group(['prefix' => 'NovoProduto'], function(){   
+	Route::group(['prefix' => 'NovoProduto'], function(){
+		Route::get('','ProdutoController@novo')->name('Cadastrar Produto');
+		Route::post('/adiciona','ProdutoController@adiciona');
+		Route::post('/edita/{id_produto}','ProdutoController@edita');
+	});
+	
+	//Grupo Produtos
+	Route::group(['prefix' => 'GrupoProdutos'], function(){
+		Route::get('','GrupoProdutoController@listar')->name('Listar GrupoProdutos');
+		Route::get('/remove/{id}','GrupoProdutoController@remove');
+		Route::get('/mostrar/{id}','GrupoProdutoController@mostra');
+	});
+
+	Route::group(['prefix' => 'NovoGrupoProduto'], function(){
+		Route::get('','GrupoProdutoController@novo')->name('Cadastrar GrupoProduto');
+		Route::post('/adiciona','GrupoProdutoController@adiciona');
+		Route::post('/edita/{id_produto}','GrupoProdutoController@edita');
+	});
+
+	Route::group(['prefix' => 'NovoProduto'], function(){
 		Route::get('','ProdutoController@novo')->name('Cadastrar Produto');
 		Route::post('/adiciona','ProdutoController@adiciona');
 		Route::post('/edita/{id_produto}','ProdutoController@edita');

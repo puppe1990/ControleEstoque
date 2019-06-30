@@ -25,7 +25,8 @@
       <div class="thumbnail">
         <h2>Destaque</h2>
         <div class="caption">
-          <li class="list-group-item"><a href="{{ route('Listar Destaques') }}">Listar Destaques</a></li><br><br>
+          <li class="list-group-item"><a href="{{ route('Listar Destaques') }}">Listar Destaques</a></li>
+          <li class="list-group-item"><a href="{{ route('Listar GrupoProdutos') }}">Listar Grupo Produto</a></li>
         </div>
       </div>
     </div>   
