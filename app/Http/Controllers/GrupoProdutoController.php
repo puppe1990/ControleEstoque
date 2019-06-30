@@ -10,18 +10,24 @@ use App\Http\Requests\GrupoProdutosRequest;
 
 class GrupoProdutoController extends Controller
 {
-    public function listarGrupoProduto(){
+    public function listar(){
         $grupoProdutos = GrupoProduto::all();
-        return view('grupoProduto.listagem')
+        return view('grupoproduto.listagem')
                ->with(['grupoProdutos' => $grupoProdutos]);
     }
 
     public function novo(){
-        return view('grupoProduto.formulario');
+        $produtos = Produto::all();
+        return view('grupoproduto.formulario')
+               ->with(['produtos' => $produtos]);
     }
 
     public function adiciona(GrupoProdutosRequest $request){
-		GrupoProduto::create($request->all());
+        $grupoProdutos = $request->all();
+        foreach($grupoProdutos["produtos"] as $value){
+            GrupoProduto::create(['nome' => $grupoProdutos["nome"],
+                                  'produto_id' => $value]);
+        }
         Request::session()->flash('message.level', 'success');
         Request::session()->flash('message.content', 'Grupo Produtos Adicionada com Sucesso!');
 		
@@ -47,7 +53,7 @@ class GrupoProdutoController extends Controller
         if(empty($entrada)) {
             return "Esse Grupo Produto não existe";
         }
-        return view('entrada.edita')
+        return view('grupoproduto.edita')
                ->with(['grupoProdutos' => $grupoProdutos]);
     }
 

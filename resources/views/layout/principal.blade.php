@@ -52,6 +52,7 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Destaques <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                           <li><a href="{{ route('Listar Destaques') }}">Listar Destaques</a></li>
+                          <li><a href="{{ route('Listar GrupoProdutos') }}">Listar Grupo Produtos</a></li>
                         </ul>
                     </li>    
                     <li class="dropdown">
@@ -110,7 +111,7 @@
 
 <footer class="bs-footer" role="contentinfo">
   <div class="container">
-    <p>Purchase Store 2016-2018</p>
+    <p>Purchase Store 2016-2019</p>
   </div>
 
 </footer>
