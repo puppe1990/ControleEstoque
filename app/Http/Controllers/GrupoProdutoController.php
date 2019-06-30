@@ -2,84 +2,64 @@
 
 namespace App\Http\Controllers;
 
+use Request;
 use App\GrupoProduto;
-use Illuminate\Http\Request;
+use App\Produto;
+use App\Http\Requests\GrupoProdutosRequest;
+
 
 class GrupoProdutoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+    public function listarGrupoProduto(){
+        $grupoProdutos = GrupoProduto::all();
+        return view('grupoProduto.listagem')
+               ->with(['grupoProdutos' => $grupoProdutos]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function novo(){
+        return view('grupoProduto.formulario');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function adiciona(GrupoProdutosRequest $request){
+		GrupoProduto::create($request->all());
+        Request::session()->flash('message.level', 'success');
+        Request::session()->flash('message.content', 'Grupo Produtos Adicionada com Sucesso!');
+		
+        return redirect()
+               ->action('GrupoProdutoController@listar')
+               ->withInput(Request::only('nome'));
+	}
+
+    public function remove($id){
+        $entrada = GrupoEntrada::find($id);
+        $entrada->delete();
+
+        Request::session()->flash('message.level', 'danger');
+        Request::session()->flash('message.content', 'Grupo Produto Removidos com Sucesso!');
+
+        return redirect()
+               ->action('GrupoEntradaController@listarGrupoEntrada');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\GrupoProduto  $grupoProduto
-     * @return \Illuminate\Http\Response
-     */
-    public function show(GrupoProduto $grupoProduto)
-    {
-        //
+    public function mostra($id){
+        $grupoProdutos = Produto::all();
+
+        if(empty($entrada)) {
+            return "Esse Grupo Produto não existe";
+        }
+        return view('entrada.edita')
+               ->with(['grupoProdutos' => $grupoProdutos]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\GrupoProduto  $grupoProduto
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(GrupoProduto $grupoProduto)
-    {
-        //
-    }
+    public function edita($id){
+        $grupoProduto = GrupoProduto::find($id);
+        $params = Request::all();
+        $grupoProduto->update($params);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\GrupoProduto  $grupoProduto
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, GrupoProduto $grupoProduto)
-    {
-        //
-    }
+        Request::session()->flash('message.level', 'success');
+        Request::session()->flash('message.content', 'Grupo Produto Alterado com Sucesso!');
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\GrupoProduto  $grupoProduto
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(GrupoProduto $grupoProduto)
-    {
-        //
+        return redirect()
+               ->action('GrupoProdutoController@listar');
     }
 }
