@@ -16,9 +16,6 @@
     @foreach($grupoProdutos as $grupoProduto)
         <div class="col-sm-6 col-md-4">
             <div class="thumbnail">
-                <h3>Nome do Grupo: {{ $grupoProduto->nome }}</h3>
-                <p>Entrada: {{ $grupoProduto->quantidadeEntrada }}</p>
-                <p>Saída: {{ $grupoProduto->quantidadeSaida }}</p>
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -26,20 +23,32 @@
                             <th>Nome</th>
                             <th>Entrada</th>
                             <th>Saída</th>
+                            <th>Saldo</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php 
+                            $entrada = 0; 
+                            $saida = 0;
+                        ?>
                         @foreach($produtos as $produto)
                             <tr>
                                 @if($grupoProduto->nome == $produto->nome)
-                                    <td>{{ $produto->id_produto }}</td>
+                                    <td>{{ $produto->codigo_produto }}</td>
                                     <td>{{ $produto->descricao }}</td>
                                     <td>{{ $produto->quantidadeEntrada }}</td>
                                     <td>{{ $produto->quantidadeSaida }}</td>
+                                    <td>{{ $produto->quantidadeEntrada - $produto->quantidadeSaida }}</td>
+                                    <?php
+                                        $entrada = $entrada + $produto->quantidadeEntrada;
+                                        $saida = $saida + $produto->quantidadeSaida; ?>
                                 @endif
                             </tr>
                         @endforeach
                     </tbody>
+                    <h3>Nome do Grupo: {{ $grupoProduto->nome }}</h3>
+                    <p>Entrada: {{ $entrada }}</p>
+                    <p>Saída: {{ $saida }}</p>
                 </table>
             </div>
         </div>
