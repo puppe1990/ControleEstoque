@@ -36,8 +36,8 @@
                                 @if($grupoProduto->nome == $produto->nome)
                                     <td>{{ $produto->codigo_produto }}</td>
                                     <td>{{ $produto->descricao }}</td>
-                                    <td>{{ $produto->quantidadeEntrada }}</td>
-                                    <td>{{ $produto->quantidadeSaida }}</td>
+                                    <td>{{ $produto->quantidadeEntrada ? $produto->quantidadeEntrada : 0  }}</td>
+                                    <td>{{ $produto->quantidadeSaida ? $produto->quantidadeSaida : 0 }}</td>
                                     <td>{{ $produto->quantidadeEntrada - $produto->quantidadeSaida }}</td>
                                     <?php
                                         $entrada = $entrada + $produto->quantidadeEntrada;
