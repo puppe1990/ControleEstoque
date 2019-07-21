@@ -23,6 +23,42 @@ class RelatorioController extends Controller
 			case '1':
 				$relatorios = Produto
 		        ::join('saidas', 'saidas.fk_produto', '=', 'produtos.id_produto')
+		        ->join('vendas', 'vendas.id_venda', '=', 'saidas.fk_venda')
+				->select('produtos.codigo_produto',
+						 'produtos.path_image',
+						 'produtos.descricao',
+						 DB::raw('count(produtos.id_produto) as contador'))
+        		->whereBetween('saidas.created_at', array($request["inicio"],$request["fim"]))
+        		->where('vendas.online', '=', 0)
+		        ->groupBy('produtos.codigo_produto', 'produtos.path_image','produtos.descricao')
+		        ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
+		        ->orderBy('contador','DESC')
+		        ->get();
+
+		        $_REQUEST["id_relatorio"] = $request["id_relatorio"];
+				break;
+			case '2':
+				$relatorios = Produto
+							::join('saidas', 'saidas.fk_produto', '=', 'produtos.id_produto')
+							->join('vendas', 'vendas.id_venda', '=', 'saidas.fk_venda')
+							->select('produtos.codigo_produto',
+									'produtos.path_image',
+									'produtos.descricao',
+									DB::raw('count(produtos.id_produto) as contador'))
+							->whereBetween('saidas.created_at', array($request["inicio"],$request["fim"]))
+							->where('vendas.online', '=', 1)
+							->groupBy('produtos.codigo_produto', 
+										'produtos.path_image',
+										'produtos.descricao')
+							->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
+							->orderBy('contador','DESC')
+							->get();
+
+				$_REQUEST["id_relatorio"] = $request["id_relatorio"];
+				break;
+			case '3':
+				$relatorios = Produto
+		        ::join('saidas', 'saidas.fk_produto', '=', 'produtos.id_produto')
 		        ->select('produtos.codigo_produto','produtos.descricao',DB::raw('count(produtos.id_produto) as contador'))
         		->whereBetween('saidas.created_at',array($request["inicio"],$request["fim"]))
 		        ->groupBy('produtos.codigo_produto','produtos.descricao')
@@ -33,7 +69,7 @@ class RelatorioController extends Controller
 		        $_REQUEST["id_relatorio"] = $request["id_relatorio"];
 				break;
 
-			case '2':
+			case '4':
 				$relatorios = Produto
 		        ::join('saidas', 'saidas.fk_produto', '=', 'produtos.id_produto')
         		->join('categorias', 'categorias.id_categoria', '=', 'produtos.fk_categoria')
@@ -46,7 +82,7 @@ class RelatorioController extends Controller
 		        $_REQUEST["id_relatorio"] = $request["id_relatorio"];
 				break;
 
-			case '3':
+			case '5':
 				$relatorios = Produto
 		        ::join('entradas', 'entradas.fk_produto', '=', 'produtos.id_produto')
         		->join('categorias', 'categorias.id_categoria', '=', 'produtos.fk_categoria')
@@ -59,7 +95,7 @@ class RelatorioController extends Controller
 		        $_REQUEST["id_relatorio"] = $request["id_relatorio"];
 				break;			
 
-			case '4':
+			case '6':
 				$relatorios = Venda
 		        ::select(DB::raw('sum(vendas.valor_venda) as valor'),DB::raw('count(id_venda) as quantidade'),DB::raw('sum(vendas.valor_venda)/count(vendas.id_venda) as ticket_medio'))
         		->whereBetween('vendas.created_at',array($request["inicio"],$request["fim"]))
@@ -70,7 +106,7 @@ class RelatorioController extends Controller
 		        $_REQUEST["id_relatorio"] = $request["id_relatorio"];
 				break;
 
-			case '5':
+			case '7':
 				$relatorios = Venda
 		        ::select(DB::raw('sum(vendas.valor_venda) as valor'),DB::raw('count(vendas.id_venda) as quantidade'),DB::raw('sum(vendas.valor_venda)/count(vendas.id_venda) as ticket_medio'))
         		->whereBetween('vendas.created_at',array($request["inicio"],$request["fim"]))
@@ -80,7 +116,7 @@ class RelatorioController extends Controller
 		        $_REQUEST["id_relatorio"] = $request["id_relatorio"];
 				break;
 
-			case '6':
+			case '8':
 				$relatorios = Venda
 		        ::select(DB::raw('sum(vendas.valor_venda) as valor'),DB::raw('count(vendas.id_venda) as quantidade'),DB::raw('sum(vendas.valor_venda)/count(vendas.id_venda) as ticket_medio'))
         		->whereBetween('vendas.created_at',array($request["inicio"],$request["fim"]))
@@ -90,7 +126,7 @@ class RelatorioController extends Controller
 		        $_REQUEST["id_relatorio"] = $request["id_relatorio"];
 				break;
 
-			case '7':
+			case '9':
 				$relatorios = Venda
 		        ::join('clientes', 'clientes.id_clientes', '=', 'vendas.fk_cliente')
 		        ->select('clientes.id_clientes','clientes.nome','clientes.email','clientes.celular',DB::raw('sum(vendas.valor_venda) as valor'),DB::raw('count(clientes.id_clientes) as num_vendas'))
@@ -104,7 +140,7 @@ class RelatorioController extends Controller
 		        $_REQUEST["id_relatorio"] = $request["id_relatorio"];
 				break;
 
-			case '8':
+			case '10':
 
        			$relatorios = DB::select( DB::raw("select (select sum(p.valor_compra*e.quantidade) valor_entrada from produtos p
 													inner join entradas e on e.fk_produto = p.id_produto) - (select sum(p.valor_compra*s.quantidade) valor_entrada from produtos p

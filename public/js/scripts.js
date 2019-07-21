@@ -75,18 +75,15 @@ $(document).ready(function(){
      	stateSave: true
     } );   
 
-
-
     $("#categoria").select2(); 
-    $("#nomeClientes").select2(); 
-
-
+	$("#nomeClientes").select2(); 
+	
 	//Tive que usar este trecho pois não consegui converter o html_entities que estava retornando
-    $("td:nth-child(2)").each(function(){
-	    var $this = $(this);
-	    var t = $this.text();
-	    $this.html(t.replace('&lt','<').replace('&gt', '>'));
-	}); 
+    // $("td:nth-child(2)").each(function(){
+	//     var $this = $(this);
+	//     var t = $this.text();
+	//     $this.html(t.replace('&lt','<').replace('&gt', '>'));
+	// }); 
 
 });
 
@@ -318,6 +315,14 @@ function inserirHoraAtual(){
 
 function inserirDataAtualRelatorio(){
 	return document.getElementById("datetime").value = moment().format("YYYY-MM-DD");  
+}
+
+function inserirUltimosSeteDias(){
+	return document.getElementById("datetime").value = moment().subtract("7", "days").format("YYYY-MM-DD");  
+}
+
+function inserirUltimosQuinzeDias(){
+	return document.getElementById("datetime").value = moment().subtract("15", "days").format("YYYY-MM-DD");  
 }
 
 function inserirPrimeiroDiaMes(){

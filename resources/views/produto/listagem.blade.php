@@ -35,7 +35,7 @@
       @foreach($produtos as $p)
         <tr>
           <td>{{ $p->codigo_produto }}</td>
-          <td id="imagem">{{ $p->imagens ? "<img width=\"150\" src=\"$p->imagens\">" : 'Sem Foto' }}</td>
+          <td id="imagem">{!! $p->imagens ? "<img width=\"150\" src=\"$p->imagens\">" : 'Sem Foto' !!}</td>
           <td>{{ $p->descricao }}</td>
           <td>{{ $p->nome }}</td>
           <td>R${{ number_format($p->valor, 2, ',', '.') }}</td>

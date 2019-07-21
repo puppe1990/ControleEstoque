@@ -13,14 +13,16 @@
             <label class="col-md-4 control-label" for="textinput">Selecione o Relatório</label>  
             <div class="col-md-4">
               <select id="categoria" name="id_relatorio" value="{{ old('id_relatorio') }}" class="form-control js-example-basic-multiple-limit">
-                      <option value="1">Produtos Mais Vendidos</option>
-                      <option value="2">Categorias Mais Vendidas</option>
-                      <option value="3">Categorias Mais Entradas</option>
-                      <option value="4">Quantidade de vendas on-line/Ticket Médio por data</option>
-                      <option value="5">Valor Total/Ticket Médio por data</option>
-                      <option value="6">Gasto com Divulgação</option>
-                      <option value="7">Clientes que mais compraram</option>
-                      <option value="8">Valor Total em Roupas</option>
+                      <option value="1">Produtos Mais Vendidos Loja Física</option>
+                      <option value="2">Produtos Mais Vendidos Ecommerce</option>
+                      <option value="3">Produtos Mais Vendidos Geral</option>
+                      <option value="4">Categorias Mais Vendidas</option>
+                      <option value="5">Categorias Mais Entradas</option>
+                      <option value="6">Quantidade de vendas on-line/Ticket Médio por data</option>
+                      <option value="7">Valor Total/Ticket Médio por data</option>
+                      <option value="8">Gasto com Divulgação</option>
+                      <option value="9">Clientes que mais compraram</option>
+                      <option value="10">Valor Total em Roupas</option>
               </select>
             </div>
         </div>
@@ -39,6 +41,8 @@
                 <input name="fim" id="datetime" value="{{ old('fim') }}" type="date" placeholder="Insira um valor" class="form-control input-md" required>
             </div>
           <div onclick="inserirDataAtualRelatorio()" class="btn btn-success">INCLUIR DATA ATUAL</div>
+          <div onclick="inserirUltimosSeteDias()" class="btn btn-success">ÚLTIMOS 7 DIAS</div>
+          <div onclick="inserirUltimosQuinzeDias()" class="btn btn-success">ÚLTIMOS 15 DIAS</div>
         </div>
         
 
@@ -57,6 +61,7 @@
                     <thead>
                       <tr>
                         <th>Código Produto</th>
+                        <th>Imagem</th>
                         <th>Descrição</th>
                         <th>Quantidade</th>
                       </tr>
@@ -65,6 +70,7 @@
                       @foreach($relatorios as $r)
                         <tr>
                           <td>{{ $r->codigo_produto }}</td>
+                          <td id="imagem">{!! $r->path_image ? "<img width=\"150\" src=\"$r->path_image\">" : 'Sem Foto' !!}</td>
                           <td>{{ $r->descricao }}</td>
                           <td>{{ $r->contador }}</td>
                         </tr>
@@ -73,23 +79,27 @@
                 </table>
                 @break
             @case(2)
-                <table id="listagem" class="table table-bordered">
-                    <thead>
-                      <tr>
-                        <th>Nome Categoria</th>
-                        <th>Quantidade</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      @foreach($relatorios as $r)
-                        <tr>
-                          <td>{{ $r->nome }}</td>
-                          <td>{{ $r->contador }}</td>
-                        </tr>
-                      @endforeach
-                    </tbody>
-                </table>
-                @break
+              <table id="listagem" class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Código Produto</th>
+                    <th>Imagem</th>
+                    <th>Descrição</th>
+                    <th>Quantidade</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($relatorios as $r)
+                    <tr>
+                      <td>{{ $r->codigo_produto }}</td>
+                      <td id="imagem">{{ $r->path_image ? "<img width=\"150\" src=\"$r->path_image\">" : 'Sem Foto' }}</td>
+                      <td>{{ $r->descricao }}</td>
+                      <td>{{ $r->contador }}</td>
+                    </tr>
+                  @endforeach
+                </tbody>
+            </table>
+            @break
             @case(3)
                 <table id="listagem" class="table table-bordered">
                     <thead>
