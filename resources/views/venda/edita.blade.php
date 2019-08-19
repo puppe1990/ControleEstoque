@@ -21,9 +21,9 @@
                             <select id="nomeClientes" name="fk_cliente" class="form-control">
                               @foreach($clientes as $c)
                                 @if($v->fk_cliente == $c->id_clientes)
-                                    <option value="{{ $c->id_clientes}}" selected>{{ $c->nome }}</option>
+                                    <option value="{{ $c->id_clientes}}" selected>{{ $c->cpf }} - {{ $c->nome }}</option>
                                 @else
-                                    <option value="{{ $c->id_clientes }}">{{ $c->nome }}</option> 
+                                    <option value="{{ $c->id_clientes }}">{{ $c->cpf }} - {{ $c->nome }}</option> 
                                 @endif    
                               @endforeach            
                             </select>    

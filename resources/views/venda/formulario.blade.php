@@ -20,7 +20,7 @@
                         <div class="col-md-3">
                             <select id="nomeClientes" name="fk_cliente" class="form-control">
                                 @foreach($clientes as $c)
-                                    <option value="{{ $c->id_clientes }}">{{ $c->nome }}</option>
+                                    <option value="{{ $c->id_clientes }}">{{ $c->cpf }} - {{ $c->nome }}</option>
                                 @endforeach
                             </select>                
                         </div>
