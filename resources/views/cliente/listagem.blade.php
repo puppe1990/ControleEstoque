@@ -16,6 +16,7 @@
       <tr>
         <th>#</th>
         <th>Nome Cliente</th>
+        <th>CPF</th>
         <th>Celular</th>
         <th>E-Mail</th>
         <th>Data de inclusão</th>
@@ -29,6 +30,7 @@
         <tr>
           <td>{{ $c->id_clientes }}</td>
           <td>{{ $c->nome }}</td>
+          <td>{{ $c->cpf }}</td>
           <td>{{ $c->celular }}</td>
           <td>{{ $c->email }}</td>
           <td>{{ date('d/m/Y', strtotime($c->created_at)) }}</td>
