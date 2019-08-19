@@ -70,10 +70,27 @@
                     <div onclick="inserirHoraAtual()" class="btn btn-success">INCLUIR HORÁRIO ATUAL</div>
                 </div>
                 <div class="form-group">
+                    <label class="col-md-4 control-label" for="tipo_pagamento">Tipo de pagamento</label>
+                    <div class="col-md-3">
+                        <select class="form-control" id="tipo_pagamento" name="tipo_pagamento">
+                            <option value="1">Débito</option>
+                            <option value="2">Crédito</option>
+                            <option value="3">Dinheiro</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="col-md-4 control-label" for="quantidade">On-line/MotoBoy</label>  
                     <div class="col-md-3">
                         <input name="online" type="hidden" value="0">
                         <input name="online" id="online" type="checkbox" value="1">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="quantidade">Troca</label>
+                    <div class="col-md-3">
+                        <input name="troca" type="hidden" value="0">
+                        <input name="troca" id="troca" type="checkbox" value="1">
                     </div>
                 </div>
                 <div class="form-group">

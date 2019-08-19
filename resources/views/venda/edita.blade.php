@@ -106,10 +106,31 @@
                     <div onclick="inserirHoraAtual()" class="btn btn-success">INCLUIR HORÁRIO ATUAL</div>
                 </div>
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="online">On-line/MotoBoy</label>  
+                    <label class="col-md-4 control-label" for="tipo_pagamento">Tipo de pagamento</label>
+                    <div class="col-md-3">
+                        <select id="tipo_pagamento" name="tipo_pagamento" class="form-control">
+                            @foreach($tipo_pagamento as $key => $tp)
+                                @if($tp == $v->tipo_pagamento)
+                                    <option value="{{ $key + 1 }}" selected>{{ $v->tipo_pagamento }}</option>
+                                @else
+                                    <option value="{{ $key + 1 }}">{{ $tp }}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="online">On-line/MotoBoy</label>
                     <div class="col-md-3">
                         <input name="online" type="hidden" value="0">
                         {!! $v->online == 1 ? '<input name="online" id="online" type="checkbox" value="1" checked>': '<input name="online" id="online" type="checkbox" value="1">' !!}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="troca">Troca</label>  
+                    <div class="col-md-3">
+                        <input name="troca" type="hidden" value="0">
+                        {!! $v->troca == 1 ? '<input name="troca" id="troca" type="checkbox" value="1" checked>': '<input name="troca" id="troca" type="checkbox" value="1">' !!}
                     </div>
                 </div>
                 <div class="form-group">

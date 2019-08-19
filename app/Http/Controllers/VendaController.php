@@ -16,7 +16,8 @@ class VendaController extends Controller
     public function listarVenda(){
 
         $vendas = DB::select( DB::raw("SELECT v.id_venda,v.valor_venda,v.desconto,v.divulgacao,
-                                              v.porcentagem,v.online,v.created_at,c.nome
+                                              v.porcentagem,v.online,v.created_at,c.nome, v.troca,
+                                              v.tipo_pagamento
                                        FROM vendas v
                                        LEFT JOIN clientes c ON c.id_clientes = v.fk_cliente") );
 
@@ -37,7 +38,7 @@ class VendaController extends Controller
         $request["created_at"] = date("Y-m-d H:i:s",strtotime($request["created_at"]));
 
         $venda = Venda::create(['valor_venda' => $request["valor_venda"],'desconto' => $request["desconto"],'porcentagem' => $request["porcentagem"],'online' => $request["online"],'divulgacao' => $request["divulgacao"],
-            'fk_cliente' => $request["fk_cliente"],'created_at' => $request["created_at"]]);
+            'fk_cliente' => $request["fk_cliente"], 'created_at' => $request["created_at"], 'tipo_pagamento' => $request["tipo_pagamento"]] );
 
         $insertedId = $venda->id_venda;
 
@@ -83,11 +84,12 @@ class VendaController extends Controller
 
         $clientes = Cliente::all();
         $produtos = Produto::all();
+        $tipo_pagamento = ['Débito', 'Crédito', 'Dinheiro'];
 
         if(empty($venda)) {
             return "Essa venda não existe";
         }
-        return view('venda.edita')->with(['v'=> $venda, 'produtos' => $produtos,'clientes' => $clientes, 'produtosSaida' => $produtosSaida]);
+        return view('venda.edita')->with(['v'=> $venda, 'produtos' => $produtos,'clientes' => $clientes, 'produtosSaida' => $produtosSaida, 'tipo_pagamento' => $tipo_pagamento]);
     }
 
     public function edita($id_venda){
