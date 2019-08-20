@@ -29,7 +29,7 @@
         <th>Total</th>
         <th>Editar</th>
         <th>Excluir</th>
-        <th>QR Code</th>
+        <!-- <th>QR Code</th> -->
       </tr>
     </thead>
     <tbody>
@@ -47,7 +47,7 @@
           <td>R$ {{ $p->valor * $saldo}}</td>
           <td><a href="/Produtos/mostrar/{{ $p->id_produto }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
           <td><a href="/Produtos/remove/{{ $p->id_produto }}"><span class="glyphicon glyphicon-trash"></span></a></td>
-          <td>{!! QrCode::size(150)->generate("purchasestore.com.br/".$p->id_produto); !!}</td>
+          <!-- <td>{!! QrCode::size(150)->generate("purchasestore.com.br/".$p->id_produto); !!}</td> -->
         </tr>
       @endforeach
     </tbody>
