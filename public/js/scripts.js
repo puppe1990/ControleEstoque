@@ -77,13 +77,6 @@ $(document).ready(function(){
 
     $("#categoria").select2(); 
 	$("#nomeClientes").select2(); 
-	
-	//Tive que usar este trecho pois não consegui converter o html_entities que estava retornando
-    // $("td:nth-child(2)").each(function(){
-	//     var $this = $(this);
-	//     var t = $this.text();
-	//     $this.html(t.replace('&lt','<').replace('&gt', '>'));
-	// }); 
 
 });
 

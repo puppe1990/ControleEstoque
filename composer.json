@@ -13,7 +13,8 @@
         "laravel/tinker": "~1.0",
         "laravelnews/laravel-twbs4": "^1.1",
         "renatomarinho/laravel-page-speed": "^1.8",
-        "simplesoftwareio/simple-qrcode": "^2.0"
+        "simplesoftwareio/simple-qrcode": "^2.0",
+        "spatie/laravel-cors": "^1.5"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
