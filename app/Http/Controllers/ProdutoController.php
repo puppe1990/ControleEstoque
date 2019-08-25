@@ -98,6 +98,11 @@ class ProdutoController extends Controller
                ->action('ProdutoController@listar');
     }
 
+    public function getProduto( $id_produto ){
+        $produto = Produto::where('id_produto', '=', $id_produto)->first();
+        return response()->json( $produto );
+    }
+
     public function maiorProduto(){
         return $produto = DB::select( 
                             DB::raw("SELECT MAX(CAST(codigo_produto AS unsigned integer)) + 1 as codigo_produto 
