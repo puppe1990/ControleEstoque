@@ -10,10 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/ap1/v1/produto/{id_produto}', 'API\ProdutoController@getProduto');
 Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/home', 'ModuloController@listar')->name('Pagina inicial');
-	Route::get('/ap1/v1/produto/{id_produto}', 'API\ProdutoController@getProduto');
 
 	//Produtos
 	Route::group(['prefix' => 'Produtos'], function(){
