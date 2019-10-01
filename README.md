@@ -20,3 +20,6 @@ Inventory Control System for clothing stores. With clothes registration, categor
 If you are interested in using your company send me an email to: matheus.puppe90@hotmail.com or WhatsApp message: <a href="https://api.whatsapp.com/send?phone=5511995597242&text=Hello%20Matheus,%20i'm%20interested%20in%20your%20InventoryControlSystem." target="_blank">Click here to send a WhatsApp message</a>
 
 https://www.buymeacoffee.com/puppe1990
+
+migration to rails:
+https://github.com/puppe1990/rails-inventory-control
