@@ -15,8 +15,11 @@ Para instalar esta aplicação.
 
 Se tiver interesse em utilizar em sua empresa mande-me um email para: matheus.puppe90@hotmail.com ou entrar em contato no WhatsApp: <a href="https://api.whatsapp.com/send?phone=5511995597242&text=Olá%20Matheus,%20Fiquei%20interessado%20em%20seu%20Sistema%20de%20Controle%20de%20Estoque." target="_blank">Clique Aqui para mandar uma mensagem pelo WhatsApp</a>
 
+Se você gostou do projeto e ajudou você de alguma forma faça uma doação em:
+https://www.buymeacoffee.com/puppe1990
+
 Inventory Control System for clothing stores. With clothes registration, categories, entry and exit control, customer and supplier registration, control and sales registration, generation of reports with filter by date. I am currently developing financial control. This Inventory Control System was made with the Laravel 5.5 Framework, Bootstrap 3, JavaScript, jQuery and MySQL Database. 
 
 If you are interested in using your company send me an email to: matheus.puppe90@hotmail.com or WhatsApp message: <a href="https://api.whatsapp.com/send?phone=5511995597242&text=Hello%20Matheus,%20i'm%20interested%20in%20your%20InventoryControlSystem." target="_blank">Click here to send a WhatsApp message</a>
 
-https://www.buymeacoffee.com/puppe1990
+
