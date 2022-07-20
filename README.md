@@ -15,7 +15,7 @@ Para instalar esta aplicação.
  5. Para rodar o projeto: php artisan serve
 
 
-Se tiver interesse em utilizar em sua empresa mande-me um email para: matheus.puppe90@hotmail.com ou entrar em contato no WhatsApp: <a href="https://api.whatsapp.com/send?phone=5511995597242&text=Olá%20Matheus,%20Fiquei%20interessado%20em%20seu%20Sistema%20de%20Controle%20de%20Estoque." target="_blank">Clique Aqui para mandar uma mensagem pelo WhatsApp</a>
+Se tiver interesse em utilizar em sua empresa mande-me um email para: matheus.puppe@gmail.com.
 
 Se você gostou do projeto e ajudou você de alguma forma faça uma doação em:
 
